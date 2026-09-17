@@ -1177,6 +1177,17 @@
           }
         });
       }
+      setTimeout(autoResizeAll, 10);
+    }
+
+    /* AUTO-EXPANDING TEXTAREA TO FIT CONTENT */
+    function autoResizeTextarea(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.max(el.scrollHeight, 26) + 'px';
+    }
+
+    function autoResizeAll() {
+      document.querySelectorAll('textarea').forEach(tx => autoResizeTextarea(tx));
     }
 
     function autoSave() {
@@ -1295,9 +1306,18 @@
       }
     }
 
-    // Auto-save silently on typing
-    document.addEventListener('input', autoSave);
-    window.addEventListener('DOMContentLoaded', loadSavedState);
+    // Auto-save silently and auto-expand on typing
+    document.addEventListener('input', (e) => {
+      if (e.target.tagName === 'TEXTAREA') {
+        autoResizeTextarea(e.target);
+      }
+      autoSave();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedState();
+      autoResizeAll();
+    });
   </script>
 </body>
 </html>
