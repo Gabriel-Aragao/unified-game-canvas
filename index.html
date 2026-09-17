@@ -1316,9 +1316,9 @@
               }
             }
 
-            // Exit chevrons on Col 6 right wall (38% and 62%)
-            positionChevron('.chevron-right-top', boxH * 0.38 - chevronH / 2, boxW);
-            positionChevron('.chevron-right-bot', boxH * 0.62 - chevronH / 2, boxW);
+            // Exit chevrons on Col 6 right wall (38% and 62%) - shifted 1 line width left for export alignment
+            positionChevron('.chevron-right-top', boxH * 0.38 - chevronH / 2, boxW - 2);
+            positionChevron('.chevron-right-bot', boxH * 0.62 - chevronH / 2, boxW - 2);
           }
         }
       });
