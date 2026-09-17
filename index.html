@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unified Game Canvas</title>
+  <title>Unified Game Canvas — Game Dev Pro Studio</title>
+  
+  <!-- Typography: Space Grotesk (Gaming Display) + Plus Jakarta Sans (UI) + JetBrains Mono (Dev) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Export engines -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -14,44 +16,51 @@
 
   <style>
     :root {
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       
-      /* THEME: BLUEPRINT DARK */
-      --bg-page: #080A0F;
-      --bg-canvas: #0F121A;
-      --bg-toolbar: #151924;
-      
-      --border-line: #333F56;
-      --border-subtle: #202738;
-      --arrow-color: #CBD5E1;
-      
-      --text-title: #FFFFFF;
-      --text-header: #F1F5F9;
-      --text-body: #E2E8F0;
-      --text-muted: #94A3B8;
-      --text-dim: #64748B;
-      
-      --shadow-canvas: 0 10px 40px rgba(0, 0, 0, 0.6);
-    }
-
-    [data-theme="light"] {
-      /* THEME: BLUEPRINT LIGHT (EXACT FIGMA / PAPER SPEC) */
+      /* GAMING PRO LIGHT PALETTE */
       --bg-page: #F1F5F9;
       --bg-canvas: #FFFFFF;
       --bg-toolbar: #FFFFFF;
+      --bg-input: #FAFCFE;
+      --bg-wing: #F8FAFC;
       
-      --border-line: #000000;
+      --border-master: #1E293B;
+      --border-line: #334155;
       --border-subtle: #E2E8F0;
-      --arrow-color: #000000;
+      --border-input: #CBD5E1;
       
-      --text-title: #000000;
-      --text-header: #000000;
-      --text-body: #1E293B;
-      --text-muted: #334155;
+      /* THEMATIC ZONE COLORS */
+      --accent-impact: #7C3AED;
+      --accent-impact-bg: #FAF5FF;
+      --accent-business: #059669;
+      --accent-business-bg: #ECFDF5;
+      --arrow-color: #312E81;
+      
+      /* 6 PIPELINE COLUMNS THEMATIC COLORS */
+      --c-concept: #D97706;   /* Amber */
+      --c-concept-bg: #FFFBEB;
+      --c-player: #DB2777;    /* Magenta/Coral */
+      --c-player-bg: #FDF2F8;
+      --c-play: #4F46E5;      /* Electric Indigo */
+      --c-play-bg: #EEF2FF;
+      --c-flow: #0D9488;      /* Neon Teal */
+      --c-flow-bg: #F0FDFA;
+      --c-core: #E11D48;      /* Ruby Red */
+      --c-core-bg: #FFF1F2;
+      --c-interact: #0284C7;  /* Cyber Sky */
+      --c-interact-bg: #F0F9FF;
+      
+      --text-title: #0F172A;
+      --text-header: #1E293B;
+      --text-body: #334155;
+      --text-muted: #64748B;
       --text-dim: #94A3B8;
       
-      --shadow-canvas: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-canvas: 0 12px 36px rgba(15, 23, 42, 0.09);
+      --shadow-toolbar: 0 4px 16px rgba(15, 23, 42, 0.05);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -59,23 +68,27 @@
     body {
       font-family: var(--font-sans);
       background-color: var(--bg-page);
+      background-image: 
+        radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.12) 1px, transparent 0);
+      background-size: 20px 20px;
       color: var(--text-body);
       min-height: 100vh;
       padding: 24px;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* TOP APPLICATION TOOLBAR (OUTSIDE MASTER CANVAS FRAME) */
+    /* TOP APPLICATION TOOLBAR */
     .app-toolbar {
       max-width: 1920px;
       margin: 0 auto 20px auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 18px;
+      padding: 12px 20px;
       background: var(--bg-toolbar);
-      border: 1.5px solid var(--border-line);
-      border-radius: 4px;
+      border: 1.5px solid var(--border-master);
+      border-radius: 12px;
+      box-shadow: var(--shadow-toolbar);
       flex-wrap: wrap;
       gap: 12px;
     }
@@ -83,15 +96,35 @@
     .brand-meta-group {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon-box {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #4F46E5, #7C3AED);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.35);
+    }
+
     .brand-title {
-      font-size: 15px;
+      font-family: var(--font-display);
+      font-size: 17px;
       font-weight: 800;
       color: var(--text-title);
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
       text-transform: uppercase;
     }
 
@@ -106,20 +139,26 @@
       align-items: center;
       gap: 6px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-muted);
     }
 
     .meta-field {
-      background: transparent;
-      border: 1px solid var(--border-line);
-      border-radius: 3px;
+      background: #F8FAFC;
+      border: 1px solid var(--border-input);
+      border-radius: 6px;
       color: var(--text-title);
       font-family: var(--font-sans);
       font-size: 11px;
       font-weight: 600;
-      padding: 3px 6px;
+      padding: 5px 8px;
       outline: none;
+      transition: all 0.15s ease;
+    }
+    .meta-field:focus {
+      background: #FFFFFF;
+      border-color: #4F46E5;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
     }
 
     .btn-actions {
@@ -132,12 +171,12 @@
     .btn {
       font-family: var(--font-sans);
       font-size: 11.5px;
-      font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 3px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 7px;
       border: 1px solid var(--border-line);
       background: var(--bg-toolbar);
-      color: var(--text-body);
+      color: var(--text-header);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -146,24 +185,28 @@
     }
 
     .btn:hover {
-      background: var(--border-line);
+      background: #F8FAFC;
+      border-color: var(--text-title);
       color: var(--text-title);
+      transform: translateY(-1px);
     }
 
     .btn-primary {
-      background: var(--text-title);
-      color: var(--bg-page);
-      border-color: var(--text-title);
-      font-weight: 700;
+      background: linear-gradient(135deg, #1E293B, #0F172A);
+      color: #FFFFFF;
+      border-color: #0F172A;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
     }
     .btn-primary:hover {
-      opacity: 0.9;
+      background: linear-gradient(135deg, #334155, #1E293B);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.22);
     }
 
     .btn-group {
       display: inline-flex;
       border: 1px solid var(--border-line);
-      border-radius: 3px;
+      border-radius: 7px;
       overflow: hidden;
     }
     .btn-group .btn {
@@ -178,64 +221,86 @@
     #jsonFileInput { display: none; }
 
     /* =========================================================
-       MASTER CANVAS FRAME (EXACT FAITHFUL BLUEPRINT WIREFRAME)
-       Starts strictly at Game Impact and ends at Game Business
+       MASTER CANVAS FRAME (CURVED BLUEPRINT ENVELOPE)
        ========================================================= */
     .master-canvas-frame {
       max-width: 1920px;
       margin: 0 auto;
       background: var(--bg-canvas);
-      border: 2px solid var(--border-line);
+      border: 2px solid var(--border-master);
+      border-radius: 14px;
       box-shadow: var(--shadow-canvas);
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow: hidden;
     }
 
     /* ---------------------------------------------------------
        1. TOP CONTINUOUS AREA: GAME IMPACT
        --------------------------------------------------------- */
     .section-game-impact {
-      padding: 24px 32px 16px 32px;
+      padding: 24px 32px 18px 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       gap: 4px;
-      background: var(--bg-canvas);
+      background: linear-gradient(180deg, var(--accent-impact-bg), #FFFFFF);
       position: relative;
     }
 
     .impact-title {
-      font-size: 17px;
+      font-family: var(--font-display);
+      font-size: 20px;
       font-weight: 800;
-      color: var(--text-title);
-      letter-spacing: 0.5px;
-      text-transform: capitalize;
+      color: var(--accent-impact);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .impact-title::before, .impact-title::after {
+      content: "✦";
+      font-size: 12px;
+      opacity: 0.7;
     }
 
     .impact-subtitle {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
       letter-spacing: 0.2px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .seamless-impact-input {
+    /* RESIZABLE IMPACT TEXTAREA */
+    .resizable-impact-input {
       width: 100%;
-      background: transparent;
-      border: none;
+      background: #FFFFFF;
+      border: 1px solid var(--border-input);
+      border-radius: 8px;
       color: var(--text-body);
       font-family: var(--font-sans);
-      font-size: 11px;
-      line-height: 1.5;
-      text-align: center;
-      min-height: 48px;
-      resize: none;
+      font-size: 11.5px;
+      line-height: 1.55;
+      padding: 6px 12px;
+      min-height: 28px;
+      height: 28px;
+      resize: vertical !important;
+      overflow: hidden !important;
       outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      display: block;
     }
-    .seamless-impact-input::placeholder {
+    .resizable-impact-input:focus {
+      border-color: var(--accent-impact);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    .resizable-impact-input::placeholder {
       color: var(--text-dim);
       font-style: italic;
     }
@@ -250,82 +315,112 @@
       background: var(--bg-canvas);
     }
 
-    /* LATERAL MARGINS (ASAS LATERAIS VAZIAS) */
+    /* LATERAL MARGINS (ASAS LATERAIS VAZIAS COM LINHA CONTÍNUA SIMPLES) */
     .lateral-margin {
       position: relative;
       display: flex;
       align-items: center;
+      background: var(--bg-wing);
     }
 
-    /* HORIZONTAL CONTINUOUS CONNECTING LINE ACROSS LATERAL MARGIN */
     .lateral-connecting-line {
       position: absolute;
       top: 50%;
       left: 0;
       right: 0;
-      height: 1.5px;
+      height: 2px;
       background: var(--border-line);
       transform: translateY(-50%);
     }
 
-    /* INNER 6-COLUMN BOX (O RETÂNGULO CENTRAL LIMITADO) */
+    /* INNER 6-COLUMN BOX (O RETÂNGULO CENTRAL COM OVERFLOW VISIBLE PARA OS CHEVRONS) */
     .inner-6col-box {
-      border: 1.5px solid var(--border-line);
+      border: 2px solid var(--border-line);
+      border-radius: 10px;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       position: relative;
+      background: var(--bg-canvas);
+      overflow: visible; /* Garante que os chevrons da borda direita e esquerda fiquem 100% visíveis */
     }
 
-    /* SVG FLOW CHEVRONS ANCHORED ALONG THE MID-HEIGHT AXIS */
-    .flow-chevron-svg {
+    /* =========================================================
+       CHEVRONS (BASE MAIOR = 36px, ALTURA MENOR = 10px)
+       ========================================================= */
+    .chevron-glyph {
       position: absolute;
-      top: calc(50% - 6px);
-      width: 8px;
-      height: 12px;
-      z-index: 10;
+      width: 10px;
+      height: 36px;
+      z-index: 20;
       pointer-events: none;
-    }
-    .flow-chevron-svg polygon {
-      fill: var(--arrow-color);
+      transform: translateY(-50%);
+      filter: drop-shadow(1px 0 2px rgba(0, 0, 0, 0.15));
     }
 
-    /* CHEVRON POSITIONS (7 TRIANGLES AT THE VERTICAL DIVIDERS) */
-    .chevron-pos-0 { left: -4px; }
-    .chevron-pos-1 { left: calc(16.6666% - 4px); }
-    .chevron-pos-2 { left: calc(33.3333% - 4px); }
-    .chevron-pos-3 { left: calc(50.0000% - 4px); }
-    .chevron-pos-4 { left: calc(66.6666% - 4px); }
-    .chevron-pos-5 { left: calc(83.3333% - 4px); }
-    .chevron-pos-6 { right: -4px; }
+    /* 2 CHEVRONS NA ENTRADA (COL 1) - APROXIMADOS (38% E 62%) */
+    .chevron-left-top { left: 0; top: 38%; }
+    .chevron-left-bot { left: 0; top: 62%; }
 
-    /* INDIVIDUAL COLUMN (ÁREA VERTICAL ÚNICA E CONTÍNUA) */
+    /* 5 CHEVRONS NAS DIVISÓRIAS INTERNAS NA LINHA MÉDIA (50%) */
+    .chevron-div-1 { left: 16.666%; top: 50%; }
+    .chevron-div-2 { left: 33.333%; top: 50%; }
+    .chevron-div-3 { left: 50.000%; top: 50%; }
+    .chevron-div-4 { left: 66.666%; top: 50%; }
+    .chevron-div-5 { left: 83.333%; top: 50%; }
+
+    /* 2 CHEVRONS NA SAÍDA (COL 6) - APROXIMADOS (38% E 62%) */
+    .chevron-right-top { left: 100%; top: 38%; }
+    .chevron-right-bot { left: 100%; top: 62%; }
+
+    /* INDIVIDUAL COLUMN (ÁREA VERTICAL CONTÍNUA) */
     .canvas-column {
       display: flex;
       flex-direction: column;
       border-right: 1.5px solid var(--border-line);
       position: relative;
+      height: 100%;
     }
     .canvas-column:last-child {
       border-right: none;
     }
 
+    /* COLUMN HEADER */
     .column-header-title {
-      font-size: 13.5px;
+      font-family: var(--font-display);
+      font-size: 14px;
       font-weight: 800;
       color: var(--text-title);
       text-align: center;
-      padding: 12px 6px 10px 6px;
+      padding: 13px 6px 11px 6px;
       border-bottom: 1.5px solid var(--border-line);
-      letter-spacing: 0.1px;
+      letter-spacing: 0.3px;
+      background: var(--bg-wing);
+      text-transform: uppercase;
+      position: relative;
     }
 
-    /* SUB-SECTION INSIDE CONTINUOUS COLUMN */
+    .col-concept .column-header-title { 
+      border-top: 4px solid var(--c-concept); 
+      color: var(--c-concept); 
+      background: var(--c-concept-bg); 
+      border-top-left-radius: 8px;
+    }
+    .col-player .column-header-title  { border-top: 4px solid var(--c-player); color: var(--c-player); background: var(--c-player-bg); }
+    .col-play .column-header-title    { border-top: 4px solid var(--c-play); color: var(--c-play); background: var(--c-play-bg); }
+    .col-flow .column-header-title    { border-top: 4px solid var(--c-flow); color: var(--c-flow); background: var(--c-flow-bg); }
+    .col-core .column-header-title    { border-top: 4px solid var(--c-core); color: var(--c-core); background: var(--c-core-bg); }
+    .col-interaction .column-header-title { 
+      border-top: 4px solid var(--c-interact); 
+      color: var(--c-interact); 
+      background: var(--c-interact-bg); 
+      border-top-right-radius: 8px;
+    }
+
+    /* SUB-SECTION CONTAINER (ALLOWS RESIZING WITHOUT FLEX CRUSH) */
     .column-topic-block {
-      display: flex;
-      flex-direction: column;
-      padding: 10px 10px;
+      display: block;
+      padding: 8px 10px 8px 18px;
       border-bottom: 1px solid var(--border-subtle);
-      flex: 1;
     }
     .column-topic-block:last-child {
       border-bottom: none;
@@ -335,25 +430,45 @@
       font-size: 11px;
       font-weight: 700;
       color: var(--text-header);
-      margin-bottom: 4px;
       line-height: 1.35;
+      margin-bottom: 4px;
+      display: block;
     }
 
-    .seamless-textarea {
+    /* RESIZABLE TEXTAREA INSIDE COLUMNS */
+    .resizable-field-textarea {
       width: 100%;
-      background: transparent;
-      border: none;
+      background: #FAFCFE;
+      border: 1px solid var(--border-input);
+      border-radius: 6px;
       color: var(--text-body);
       font-family: var(--font-sans);
       font-size: 11px;
       line-height: 1.45;
-      padding: 0;
-      min-height: 44px;
-      resize: none;
+      padding: 7px 9px;
+      min-height: 24px;
+      height: 24px;
+      resize: vertical !important;
+      overflow: hidden !important;
       outline: none;
-      flex: 1;
+      display: block;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
     }
-    .seamless-textarea::placeholder {
+    .resizable-field-textarea:hover {
+      background: #FFFFFF;
+      border-color: #94A3B8;
+    }
+
+    /* THEMATIC FOCUS GLOW ACCORDING TO COLUMN */
+    .col-concept .resizable-field-textarea:focus { background: #FFFFFF; border-color: var(--c-concept); box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.18); }
+    .col-player .resizable-field-textarea:focus  { background: #FFFFFF; border-color: var(--c-player); box-shadow: 0 0 0 2px rgba(219, 39, 119, 0.18); }
+    .col-play .resizable-field-textarea:focus    { background: #FFFFFF; border-color: var(--c-play); box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.18); }
+    .col-flow .resizable-field-textarea:focus    { background: #FFFFFF; border-color: var(--c-flow); box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.18); }
+    .col-core .resizable-field-textarea:focus    { background: #FFFFFF; border-color: var(--c-core); box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.18); }
+    .col-interaction .resizable-field-textarea:focus { background: #FFFFFF; border-color: var(--c-interact); box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.18); }
+
+    .resizable-field-textarea::placeholder {
       color: var(--text-dim);
       font-size: 10.5px;
       font-style: italic;
@@ -369,40 +484,61 @@
       align-items: center;
       text-align: center;
       gap: 4px;
-      background: var(--bg-canvas);
+      background: linear-gradient(180deg, #FFFFFF, var(--accent-business-bg));
       position: relative;
     }
 
     .business-title {
-      font-size: 17px;
+      font-family: var(--font-display);
+      font-size: 20px;
       font-weight: 800;
-      color: var(--text-title);
-      letter-spacing: 0.5px;
-      text-transform: capitalize;
+      color: var(--accent-business);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .business-title::before, .business-title::after {
+      content: "✦";
+      font-size: 12px;
+      opacity: 0.7;
     }
 
     .business-subtitle {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
       letter-spacing: 0.2px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .seamless-business-input {
+    /* RESIZABLE BUSINESS TEXTAREA */
+    .resizable-business-input {
       width: 100%;
-      background: transparent;
-      border: none;
+      background: #FFFFFF;
+      border: 1px solid var(--border-input);
+      border-radius: 8px;
       color: var(--text-body);
       font-family: var(--font-sans);
-      font-size: 11px;
-      line-height: 1.5;
-      text-align: center;
-      min-height: 48px;
-      resize: none;
+      font-size: 11.5px;
+      line-height: 1.55;
+      padding: 6px 12px;
+      min-height: 28px;
+      height: 28px;
+      resize: vertical !important;
+      overflow: hidden !important;
       outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      display: block;
     }
-    .seamless-business-input::placeholder {
+    .resizable-business-input:focus {
+      border-color: var(--accent-business);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+    }
+    .resizable-business-input::placeholder {
       color: var(--text-dim);
       font-style: italic;
     }
@@ -412,14 +548,14 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: #1E293B;
+      background: #0F172A;
       color: #FFFFFF;
       border: 1px solid #334155;
       padding: 10px 18px;
-      border-radius: 4px;
+      border-radius: 8px;
       font-size: 12px;
-      font-weight: 600;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
       opacity: 0;
       transform: translateY(10px);
       transition: all 0.25s ease;
@@ -443,23 +579,35 @@
       }
       .master-canvas-frame {
         border: 2px solid #000 !important;
+        border-radius: 0 !important;
         box-shadow: none !important;
         max-width: 100% !important;
       }
       .inner-6col-box {
         border: 1.5px solid #000 !important;
+        border-radius: 0 !important;
       }
       .canvas-column {
         border-right: 1.5px solid #000 !important;
       }
       .column-header-title {
         border-bottom: 1.5px solid #000 !important;
+        border-top: none !important;
+        background: #FFF !important;
+        color: #000 !important;
       }
       .lateral-connecting-line {
         background: #000 !important;
       }
-      .flow-chevron-svg polygon {
+      .chevron-glyph polygon {
         fill: #000 !important;
+      }
+      .resizable-field-textarea, .resizable-impact-input, .resizable-business-input {
+        border: 1px solid #999 !important;
+        border-radius: 0 !important;
+        background: #FFF !important;
+        color: #000 !important;
+        resize: none !important;
       }
     }
   </style>
@@ -469,47 +617,42 @@
   <!-- 0. CONTROL TOOLBAR (OUTSIDE MASTER FRAME) -->
   <header class="app-toolbar">
     <div class="brand-meta-group">
-      <h1 class="brand-title">Unified Game Canvas</h1>
+      <div class="brand-title-wrap">
+        <div class="brand-icon-box">🎮</div>
+        <h1 class="brand-title">Unified Game Canvas</h1>
+      </div>
 
       <div class="meta-inputs-bar">
         <div class="meta-item">
-          <span>Jogo:</span>
+          <span data-i18n="meta_game">Jogo:</span>
           <input type="text" id="metaGameTitle" class="meta-field" value="Projeto Alpha" placeholder="Nome do Jogo..." style="width: 130px;">
         </div>
         <div class="meta-item">
-          <span>Versão:</span>
+          <span data-i18n="meta_version">Versão:</span>
           <input type="text" id="metaVersion" class="meta-field" value="v1.0" placeholder="v1.0" style="width: 60px;">
         </div>
         <div class="meta-item">
-          <span>Autor:</span>
+          <span data-i18n="meta_author">Autor:</span>
           <input type="text" id="metaAuthor" class="meta-field" value="@domaragao" placeholder="Autor" style="width: 100px;">
         </div>
       </div>
     </div>
 
     <div class="btn-actions">
-      <!-- Theme & Reset -->
-      <button class="btn" onclick="toggleTheme()">🌓 Tema: <span id="themeName">Dark</span></button>
-      <button class="btn" onclick="clearFields()">🗑️ Limpar</button>
-      <button class="btn" onclick="saveDraft()">💾 Salvar</button>
+      <!-- Language Translation Toggle -->
+      <button class="btn" onclick="toggleLanguage()" id="langToggleBtn">🌐 Idioma: <span id="langName" style="color:var(--accent-impact);">PT-BR</span></button>
+      <button class="btn" onclick="clearFields()" data-i18n="btn_clear">🗑️ Limpar</button>
 
       <!-- JSON Tools -->
       <div class="btn-group">
-        <button class="btn" onclick="exportJSON()">📥 Exportar JSON</button>
-        <button class="btn" onclick="triggerImport()">📤 Importar JSON</button>
+        <button class="btn" onclick="exportJSON()" data-i18n="btn_export_json">📥 Exportar JSON</button>
+        <button class="btn" onclick="triggerImport()" data-i18n="btn_import_json">📤 Importar JSON</button>
       </div>
       <input type="file" id="jsonFileInput" accept=".json" onchange="importJSONFile(event)" />
 
-      <!-- High-Res Exports (PNG & PDF) -->
-      <div class="btn-group">
-        <button class="btn btn-primary" onclick="exportPNG('dark')">PNG Dark</button>
-        <button class="btn btn-primary" onclick="exportPNG('light')">PNG Light</button>
-      </div>
-
-      <div class="btn-group">
-        <button class="btn btn-primary" onclick="exportPDF('dark')">PDF Dark</button>
-        <button class="btn btn-primary" onclick="exportPDF('light')">PDF Light</button>
-      </div>
+      <!-- High-Res Exports -->
+      <button class="btn btn-primary" onclick="exportPNG()" data-i18n="btn_export_png">🖼️ Exportar PNG</button>
+      <button class="btn btn-primary" onclick="exportPDF()" data-i18n="btn_export_pdf">📄 Exportar PDF</button>
     </div>
   </header>
 
@@ -521,15 +664,15 @@
 
     <!-- 1. TOP CONTINUOUS AREA: GAME IMPACT -->
     <section class="section-game-impact">
-      <h2 class="impact-title">Game Impact</h2>
-      <p class="impact-subtitle">Emotion, Fun, Enjoyment, Learning, Behavioral Changes, Sociability, Metrics</p>
-      <textarea class="seamless-impact-input" data-key="game_impact" placeholder="Digite o impacto emocional, propósito, aprendizado, dinamismo social e métricas de sucesso..."></textarea>
+      <h2 class="impact-title" data-i18n="impact_title">Game Impact</h2>
+      <p class="impact-subtitle" data-i18n="impact_sub">Emotion, Fun, Enjoyment, Learning, Behavioral Changes, Sociability, Metrics</p>
+      <textarea class="resizable-impact-input" data-key="game_impact" data-i18n-ph="ph_impact" placeholder="Digite o impacto emocional, propósito, aprendizado, dinamismo social e métricas de sucesso..."></textarea>
     </section>
 
     <!-- 2. CENTRAL BODY (LATERAL MARGINS + 6-COLUMN INNER BOX) -->
     <section class="central-body-wrapper">
 
-      <!-- LEFT LATERAL MARGIN (ASA LATERAL ESQUERDA) -->
+      <!-- LEFT LATERAL MARGIN (ASA LATERAL ESQUERDA - LINHA SIMPLES) -->
       <div class="lateral-margin">
         <div class="lateral-connecting-line"></div>
       </div>
@@ -537,219 +680,232 @@
       <!-- INNER 6-COLUMN RECTANGLE (O BLOCO CENTRAL DAS 6 COLUNAS) -->
       <div class="inner-6col-box">
 
-        <!-- 7 SVG CHEVRONS ANCHORED ALONG THE MIDLINE AXIS (100% EXPORT SAFE) -->
-        <svg class="flow-chevron-svg chevron-pos-0" viewBox="0 0 8 12" width="8" height="12">
-          <polygon points="0,0 8,6 0,12" />
+        <!-- =========================================================
+             CHEVRONS (BASE MAIOR = 36px, ALTURA MENOR = 10px)
+             ========================================================= -->
+        <!-- 2 Chevrons na parede esquerda (Coluna 1) - Aproximados (38% e 62%) -->
+        <svg class="chevron-glyph chevron-left-top" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="flow-chevron-svg chevron-pos-1" viewBox="0 0 8 12" width="8" height="12">
-          <polygon points="0,0 8,6 0,12" />
+        <svg class="chevron-glyph chevron-left-bot" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="flow-chevron-svg chevron-pos-2" viewBox="0 0 8 12" width="8" height="12">
-          <polygon points="0,0 8,6 0,12" />
+
+        <!-- 5 Chevrons nas divisórias internas na linha média (50%) -->
+        <svg class="chevron-glyph chevron-div-1" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="flow-chevron-svg chevron-pos-3" viewBox="0 0 8 12" width="8" height="12">
-          <polygon points="0,0 8,6 0,12" />
+        <svg class="chevron-glyph chevron-div-2" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="flow-chevron-svg chevron-pos-4" viewBox="0 0 8 12" width="8" height="12">
-          <polygon points="0,0 8,6 0,12" />
+        <svg class="chevron-glyph chevron-div-3" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="flow-chevron-svg chevron-pos-5" viewBox="0 0 8 12" width="8" height="12">
-          <polygon points="0,0 8,6 0,12" />
+        <svg class="chevron-glyph chevron-div-4" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="flow-chevron-svg chevron-pos-6" viewBox="0 0 8 12" width="8" height="12">
-          <polygon points="0,0 8,6 0,12" />
+        <svg class="chevron-glyph chevron-div-5" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
+        </svg>
+
+        <!-- 2 Chevrons na parede direita (Coluna 6) - Aproximados (38% e 62%) -->
+        <svg class="chevron-glyph chevron-right-top" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
+        </svg>
+        <svg class="chevron-glyph chevron-right-bot" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
 
         <!-- ==============================================
-             COLUNA 1: GAME CONCEPT
+             COLUNA 1: GAME CONCEPT (AMBER TOUCH)
              ============================================== -->
-        <article class="canvas-column">
-          <h3 class="column-header-title">Game Concept</h3>
+        <article class="canvas-column col-concept">
+          <h3 class="column-header-title" data-i18n="col1_title">Game Concept</h3>
 
           <div class="column-topic-block">
-            <span class="topic-label">Name, Title, Version</span>
-            <textarea class="seamless-textarea" data-key="concept_name" placeholder="Título, codinome, marco..."></textarea>
+            <span class="topic-label" data-i18n="col1_row1">Name, Title, Version</span>
+            <textarea class="resizable-field-textarea" data-key="concept_name" data-i18n-ph="ph_concept_name" placeholder="Título, codinome, marco..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Objective, Intention, Idea</span>
-            <textarea class="seamless-textarea" data-key="concept_objective" placeholder="Intenção central, High Concept Pitch, USP..."></textarea>
+            <span class="topic-label" data-i18n="col1_row2">Objective, Intention, Idea</span>
+            <textarea class="resizable-field-textarea" data-key="concept_objective" data-i18n-ph="ph_concept_objective" placeholder="Intenção central, High Concept Pitch, USP..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Theme, Story, Inspiration</span>
-            <textarea class="seamless-textarea" data-key="concept_theme" placeholder="Universo, premissa, tom, lore, referências..."></textarea>
+            <span class="topic-label" data-i18n="col1_row3">Theme, Story, Inspiration</span>
+            <textarea class="resizable-field-textarea" data-key="concept_theme" data-i18n-ph="ph_concept_theme" placeholder="Universo, premissa, tom, lore, referências..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
-            <span class="topic-label">Genre, Type</span>
-            <textarea class="seamless-textarea" data-key="concept_genre" placeholder="Gênero, subgêneros, ritmo, escala, câmera..."></textarea>
+          <div class="column-topic-block">
+            <span class="topic-label" data-i18n="col1_row4">Genre, Type</span>
+            <textarea class="resizable-field-textarea" data-key="concept_genre" data-i18n-ph="ph_concept_genre" placeholder="Gênero, subgêneros, ritmo, escala, câmera..."></textarea>
           </div>
         </article>
 
         <!-- ==============================================
-             COLUNA 2: GAME PLAYER
+             COLUNA 2: GAME PLAYER (CORAL TOUCH)
              ============================================== -->
-        <article class="canvas-column">
-          <h3 class="column-header-title">Game Player</h3>
+        <article class="canvas-column col-player">
+          <h3 class="column-header-title" data-i18n="col2_title">Game Player</h3>
 
           <div class="column-topic-block">
-            <span class="topic-label">Age</span>
-            <textarea class="seamless-textarea" data-key="player_age" placeholder="Faixa etária-alvo, classificação..."></textarea>
+            <span class="topic-label" data-i18n="col2_row1">Age</span>
+            <textarea class="resizable-field-textarea" data-key="player_age" data-i18n-ph="ph_player_age" placeholder="Faixa etária-alvo, classificação..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Type, Segment</span>
-            <textarea class="seamless-textarea" data-key="player_type" placeholder="Bartle: Achiever, Explorer, Social, Killer..."></textarea>
+            <span class="topic-label" data-i18n="col2_row2">Type, Segment</span>
+            <textarea class="resizable-field-textarea" data-key="player_type" data-i18n-ph="ph_player_type" placeholder="Bartle: Achiever, Explorer, Social, Killer..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Number of Players</span>
-            <textarea class="seamless-textarea" data-key="player_number" placeholder="Single-player, Co-op, PvP, MMO..."></textarea>
+            <span class="topic-label" data-i18n="col2_row3">Number of Players</span>
+            <textarea class="resizable-field-textarea" data-key="player_number" data-i18n-ph="ph_player_number" placeholder="Single-player, Co-op, PvP, MMO..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Community</span>
-            <textarea class="seamless-textarea" data-key="player_community" placeholder="Canais comunitários, guilds, hubs..."></textarea>
+            <span class="topic-label" data-i18n="col2_row4">Community</span>
+            <textarea class="resizable-field-textarea" data-key="player_community" data-i18n-ph="ph_player_community" placeholder="Canais comunitários, guilds, hubs..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
-            <span class="topic-label">Character</span>
-            <textarea class="seamless-textarea" data-key="player_character" placeholder="Persona do avatar, customização, conexão..."></textarea>
+          <div class="column-topic-block">
+            <span class="topic-label" data-i18n="col2_row5">Character</span>
+            <textarea class="resizable-field-textarea" data-key="player_character" data-i18n-ph="ph_player_character" placeholder="Persona do avatar, customização, conexão..."></textarea>
           </div>
         </article>
 
         <!-- ==============================================
-             COLUNA 3: GAME PLAY
+             COLUNA 3: GAME PLAY (INDIGO CORE TOUCH)
              ============================================== -->
-        <article class="canvas-column">
-          <h3 class="column-header-title">Game Play</h3>
+        <article class="canvas-column col-play">
+          <h3 class="column-header-title" data-i18n="col3_title">Game Play</h3>
 
           <div class="column-topic-block">
-            <span class="topic-label">Start, Intention-Flow, End, Win Condition</span>
-            <textarea class="seamless-textarea" data-key="gameplay_flow" placeholder="Condições de vitória, derrota, início e encerramento..."></textarea>
+            <span class="topic-label" data-i18n="col3_row1">Start, Intention-Flow, End, Win Condition</span>
+            <textarea class="resizable-field-textarea" data-key="gameplay_flow" data-i18n-ph="ph_gameplay_flow" placeholder="Condições de vitória, derrota, início e encerramento..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Rules, Options, Powers, Behaviors</span>
-            <textarea class="seamless-textarea" data-key="gameplay_rules" placeholder="Regras invioláveis, restrições, habilidades..."></textarea>
+            <span class="topic-label" data-i18n="col3_row2">Rules, Options, Powers, Behaviors</span>
+            <textarea class="resizable-field-textarea" data-key="gameplay_rules" data-i18n-ph="ph_gameplay_rules" placeholder="Regras invioláveis, restrições, habilidades..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Goals, Mission, Challenges, Enemy &amp; Boss</span>
-            <textarea class="seamless-textarea" data-key="gameplay_goals" placeholder="Missões, desafios, tipos de inimigos, bosses..."></textarea>
+            <span class="topic-label" data-i18n="col3_row3">Goals, Mission, Challenges, Enemy &amp; Boss</span>
+            <textarea class="resizable-field-textarea" data-key="gameplay_goals" data-i18n-ph="ph_gameplay_goals" placeholder="Missões, desafios, tipos de inimigos, bosses..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Boundaries, Space, Level Design, World</span>
-            <textarea class="seamless-textarea" data-key="gameplay_boundaries" placeholder="Limites espaciais, biomas, estrutura de fases..."></textarea>
+            <span class="topic-label" data-i18n="col3_row4">Boundaries, Space, Level Design, World</span>
+            <textarea class="resizable-field-textarea" data-key="gameplay_boundaries" data-i18n-ph="ph_gameplay_boundaries" placeholder="Limites espaciais, biomas, estrutura de fases..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Resources, Objects, Scene, Window</span>
-            <textarea class="seamless-textarea" data-key="gameplay_resources" placeholder="Recursos, itens, inventário, elementos de cena..."></textarea>
+            <span class="topic-label" data-i18n="col3_row5">Resources, Objects, Scene, Window</span>
+            <textarea class="resizable-field-textarea" data-key="gameplay_resources" data-i18n-ph="ph_gameplay_resources" placeholder="Recursos, itens, inventário, elementos de cena..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Components, Play Elements</span>
-            <textarea class="seamless-textarea" data-key="gameplay_components" placeholder="Componentes tangíveis e peças de jogo..."></textarea>
+            <span class="topic-label" data-i18n="col3_row6">Components, Play Elements</span>
+            <textarea class="resizable-field-textarea" data-key="gameplay_components" data-i18n-ph="ph_gameplay_components" placeholder="Componentes tangíveis e peças de jogo..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Punishment, Failure</span>
-            <textarea class="seamless-textarea" data-key="gameplay_punishment" placeholder="Penalidades por falha, perda de recursos..."></textarea>
+            <span class="topic-label" data-i18n="col3_row7">Punishment, Failure</span>
+            <textarea class="resizable-field-textarea" data-key="gameplay_punishment" data-i18n-ph="ph_gameplay_punishment" placeholder="Penalidades por falha, perda de recursos..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
-            <span class="topic-label">Reward, Improvement</span>
-            <textarea class="seamless-textarea" data-key="gameplay_reward" placeholder="Recompensas (XP, Loot), progressão, maestria..."></textarea>
+          <div class="column-topic-block">
+            <span class="topic-label" data-i18n="col3_row8">Reward, Improvement</span>
+            <textarea class="resizable-field-textarea" data-key="gameplay_reward" data-i18n-ph="ph_gameplay_reward" placeholder="Recompensas (XP, Loot), progressão, maestria..."></textarea>
           </div>
         </article>
 
         <!-- ==============================================
-             COLUNA 4: GAME FLOW
+             COLUNA 4: GAME FLOW (TEAL TOUCH)
              ============================================== -->
-        <article class="canvas-column">
-          <h3 class="column-header-title">Game Flow</h3>
+        <article class="canvas-column col-flow">
+          <h3 class="column-header-title" data-i18n="col4_title">Game Flow</h3>
 
           <div class="column-topic-block">
-            <span class="topic-label">Loops, Turns</span>
-            <textarea class="seamless-textarea" data-key="flow_loops" placeholder="Micro-loop (segundos), Meso (sessão), Macro (campanha)..."></textarea>
+            <span class="topic-label" data-i18n="col4_row1">Loops, Turns</span>
+            <textarea class="resizable-field-textarea" data-key="flow_loops" data-i18n-ph="ph_flow_loops" placeholder="Micro-loop (segundos), Meso (sessão), Macro (campanha)..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Time, Randomness, AI</span>
-            <textarea class="seamless-textarea" data-key="flow_randomness" placeholder="Fator tempo, geração procedural, RNG, IA..."></textarea>
+            <span class="topic-label" data-i18n="col4_row2">Time, Randomness, AI</span>
+            <textarea class="resizable-field-textarea" data-key="flow_randomness" data-i18n-ph="ph_flow_randomness" placeholder="Fator tempo, geração procedural, RNG, IA..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Choices, Decisions, Uncertainty, Anticipation, Experience</span>
-            <textarea class="seamless-textarea" data-key="flow_choices" placeholder="Dilemas morais/táticos, tensão, antecipação, estado de Flow..."></textarea>
+            <span class="topic-label" data-i18n="col4_row3">Choices, Decisions, Uncertainty, Anticipation, Experience</span>
+            <textarea class="resizable-field-textarea" data-key="flow_choices" data-i18n-ph="ph_flow_choices" placeholder="Dilemas morais/táticos, tensão, antecipação, estado de Flow..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
-            <span class="topic-label">Skill Challenges, Incentive, Longevity</span>
-            <textarea class="seamless-textarea" data-key="flow_challenges" placeholder="Desafios cognitivos/motores, New Game+, replayability..."></textarea>
+          <div class="column-topic-block">
+            <span class="topic-label" data-i18n="col4_row4">Skill Challenges, Incentive, Longevity</span>
+            <textarea class="resizable-field-textarea" data-key="flow_challenges" data-i18n-ph="ph_flow_challenges" placeholder="Desafios cognitivos/motores, New Game+, replayability..."></textarea>
           </div>
         </article>
 
         <!-- ==============================================
-             COLUNA 5: GAME CORE
+             COLUNA 5: GAME CORE (RUBY TOUCH)
              ============================================== -->
-        <article class="canvas-column">
-          <h3 class="column-header-title">Game Core</h3>
+        <article class="canvas-column col-core">
+          <h3 class="column-header-title" data-i18n="col5_title">Game Core</h3>
 
           <div class="column-topic-block">
-            <span class="topic-label">Actions, Mechanics</span>
-            <textarea class="seamless-textarea" data-key="core_actions" placeholder="Verbos de ação (Pular, Atirar, Negociar), Game Feel..."></textarea>
+            <span class="topic-label" data-i18n="col5_row1">Actions, Mechanics</span>
+            <textarea class="resizable-field-textarea" data-key="core_actions" data-i18n-ph="ph_core_actions" placeholder="Verbos de ação (Pular, Atirar, Negociar), Game Feel..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Effects, Dynamics</span>
-            <textarea class="seamless-textarea" data-key="core_effects" placeholder="Sinergias emergentes, buffs/debuffs, reações..."></textarea>
+            <span class="topic-label" data-i18n="col5_row2">Effects, Dynamics</span>
+            <textarea class="resizable-field-textarea" data-key="core_effects" data-i18n-ph="ph_core_effects" placeholder="Sinergias emergentes, buffs/debuffs, reações..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
-            <span class="topic-label">Elements, Cut Scenes, Aesthetic Layout</span>
-            <textarea class="seamless-textarea" data-key="core_aesthetics" placeholder="Identidade visual, cutscenes, narrativa ambiental, trilha..."></textarea>
+          <div class="column-topic-block">
+            <span class="topic-label" data-i18n="col5_row3">Elements, Cut Scenes, Aesthetic Layout</span>
+            <textarea class="resizable-field-textarea" data-key="core_aesthetics" data-i18n-ph="ph_core_aesthetics" placeholder="Identidade visual, cutscenes, narrativa ambiental, trilha..."></textarea>
           </div>
         </article>
 
         <!-- ==============================================
-             COLUNA 6: GAME INTERACTION
+             COLUNA 6: GAME INTERACTION (CYAN TOUCH)
              ============================================== -->
-        <article class="canvas-column">
-          <h3 class="column-header-title">Game Interaction</h3>
+        <article class="canvas-column col-interaction">
+          <h3 class="column-header-title" data-i18n="col6_title">Game Interaction</h3>
 
           <div class="column-topic-block">
-            <span class="topic-label">Platform, Accessibility, Operational Systems, Technology, Frameworks</span>
-            <textarea class="seamless-textarea" data-key="interaction_platform" placeholder="Plataformas (PC, Console, Mobile), Engine, diretrizes A11y..."></textarea>
+            <span class="topic-label" data-i18n="col6_row1">Platform, Accessibility, Operational Systems, Technology, Frameworks</span>
+            <textarea class="resizable-field-textarea" data-key="interaction_platform" data-i18n-ph="ph_interaction_platform" placeholder="Plataformas (PC, Console, Mobile), Engine, diretrizes A11y..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Controls, I/O Devices</span>
-            <textarea class="seamless-textarea" data-key="interaction_controls" placeholder="Gamepad, Teclado/Mouse, Touch, deadzones, háptica..."></textarea>
+            <span class="topic-label" data-i18n="col6_row2">Controls, I/O Devices</span>
+            <textarea class="resizable-field-textarea" data-key="interaction_controls" data-i18n-ph="ph_interaction_controls" placeholder="Gamepad, Teclado/Mouse, Touch, deadzones, háptica..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Settings, Single or Multiplayer</span>
-            <textarea class="seamless-textarea" data-key="interaction_settings" placeholder="Configurações de áudio/vídeo, modos de jogo..."></textarea>
+            <span class="topic-label" data-i18n="col6_row3">Settings, Single or Multiplayer</span>
+            <textarea class="resizable-field-textarea" data-key="interaction_settings" data-i18n-ph="ph_interaction_settings" placeholder="Configurações de áudio/vídeo, modos de jogo..."></textarea>
           </div>
 
           <div class="column-topic-block">
-            <span class="topic-label">Cameras, Menus, UI</span>
-            <textarea class="seamless-textarea" data-key="interaction_hud" placeholder="HUD diegético/tradicional, menus, oclusão de câmera..."></textarea>
+            <span class="topic-label" data-i18n="col6_row4">Cameras, Menus, UI</span>
+            <textarea class="resizable-field-textarea" data-key="interaction_hud" data-i18n-ph="ph_interaction_hud" placeholder="HUD diegético/tradicional, menus, oclusão de câmera..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
-            <span class="topic-label">Feedback, Scoring</span>
-            <textarea class="seamless-textarea" data-key="interaction_feedback" placeholder="Juice, screen shake, hit-stop, leaderboards, placar..."></textarea>
+          <div class="column-topic-block">
+            <span class="topic-label" data-i18n="col6_row5">Feedback, Scoring</span>
+            <textarea class="resizable-field-textarea" data-key="interaction_feedback" data-i18n-ph="ph_interaction_feedback" placeholder="Juice, screen shake, hit-stop, leaderboards, placar..."></textarea>
           </div>
         </article>
 
       </div>
 
-      <!-- RIGHT LATERAL MARGIN (ASA LATERAL DIREITA) -->
+      <!-- RIGHT LATERAL MARGIN (ASA LATERAL DIREITA - LINHA SIMPLES) -->
       <div class="lateral-margin">
         <div class="lateral-connecting-line"></div>
       </div>
@@ -758,9 +914,9 @@
 
     <!-- 3. BOTTOM CONTINUOUS AREA: GAME BUSINESS -->
     <section class="section-game-business">
-      <h2 class="business-title">Game Business</h2>
-      <p class="business-subtitle">Minimum Viable Prototype, Costs, Revenues, ROI, Channels, Positioning, Bonus Material</p>
-      <textarea class="seamless-business-input" data-key="game_business" placeholder="Digite a estratégia de produção (MVP), estrutura de custos, projeção de monetização/ROI, canais de distribuição e Live-Ops..."></textarea>
+      <h2 class="business-title" data-i18n="business_title">Game Business</h2>
+      <p class="business-subtitle" data-i18n="business_sub">Minimum Viable Prototype, Costs, Revenues, ROI, Channels, Positioning, Bonus Material</p>
+      <textarea class="resizable-business-input" data-key="game_business" data-i18n-ph="ph_business" placeholder="Digite a estratégia de produção (MVP), estrutura de custos, projeção de monetização/ROI, canais de distribuição e Live-Ops..."></textarea>
     </section>
 
   </main>
@@ -769,7 +925,217 @@
 
   <script>
     /* ========================================================
-       THEME, PERSISTENCE & TOAST
+       BILINGUAL TRANSLATION DICTIONARY (EN <-> PT-BR)
+       ======================================================== */
+    const translations = {
+      en: {
+        meta_game: "Game:",
+        meta_version: "Version:",
+        meta_author: "Author:",
+        btn_clear: "🗑️ Clear",
+        btn_export_json: "📥 Export JSON",
+        btn_import_json: "📤 Import JSON",
+        btn_export_png: "🖼️ Export PNG",
+        btn_export_pdf: "📄 Export PDF",
+
+        impact_title: "Game Impact",
+        impact_sub: "Emotion, Fun, Enjoyment, Learning, Behavioral Changes, Sociability, Metrics",
+        ph_impact: "Type emotional impact, player feelings, learning, behavioral change, sociability, success metrics...",
+
+        col1_title: "Game Concept",
+        col1_row1: "Name, Title, Version",
+        col1_row2: "Objective, Intention, Idea",
+        col1_row3: "Theme, Story, Inspiration",
+        col1_row4: "Genre, Type",
+        ph_concept_name: "Working title, codename, milestone version...",
+        ph_concept_objective: "Core intention, High Concept Pitch, USP...",
+        ph_concept_theme: "Universe, premise, tone, lore, art references...",
+        ph_concept_genre: "Primary genre, hybrid subgenres, pacing, camera...",
+
+        col2_title: "Game Player",
+        col2_row1: "Age",
+        col2_row2: "Type, Segment",
+        col2_row3: "Number of Players",
+        col2_row4: "Community",
+        col2_row5: "Character",
+        ph_player_age: "Target age range, age rating...",
+        ph_player_type: "Bartle types: Achiever, Explorer, Social, Killer...",
+        ph_player_number: "Single-player, Co-op, PvP, MMO...",
+        ph_player_community: "Community hubs, Discord, streaming, guilds...",
+        ph_player_character: "Avatar persona, player bond, customization...",
+
+        col3_title: "Game Play",
+        col3_row1: "Start, Intention-Flow, End, Win Condition",
+        col3_row2: "Rules, Options, Powers, Behaviors",
+        col3_row3: "Goals, Mission, Challenges, Enemy & Boss",
+        col3_row4: "Boundaries, Space, Level Design, World",
+        col3_row5: "Resources, Objects, Scene, Window",
+        col3_row6: "Components, Play Elements",
+        col3_row7: "Punishment, Failure",
+        col3_row8: "Reward, Improvement",
+        ph_gameplay_flow: "Match start, flow, win and loss conditions...",
+        ph_gameplay_rules: "Core unbreakable rules, powers, constraints...",
+        ph_gameplay_goals: "Quests, missions, enemy archetypes, bosses...",
+        ph_gameplay_boundaries: "World spaces, biomes, level progression...",
+        ph_gameplay_resources: "Items, inventory, economy, interactables...",
+        ph_gameplay_components: "Tangible pieces, cards, dice, game elements...",
+        ph_gameplay_punishment: "Death penalties, loss consequences...",
+        ph_gameplay_reward: "XP, Loot, upgrades, mastery progression...",
+
+        col4_title: "Game Flow",
+        col4_row1: "Loops, Turns",
+        col4_row2: "Time, Randomness, AI",
+        col4_row3: "Choices, Decisions, Uncertainty, Anticipation, Experience",
+        col4_row4: "Skill Challenges, Incentive, Longevity",
+        ph_flow_loops: "Micro-loop (seconds), Meso (session), Macro...",
+        ph_flow_randomness: "Pacing, procedural generation, balanced RNG, AI...",
+        ph_flow_choices: "Tactical dilemmas, risk vs reward, Flow state...",
+        ph_flow_challenges: "Cognitive/motor challenges, New Game+, longevity...",
+
+        col5_title: "Game Core",
+        col5_row1: "Actions, Mechanics",
+        col5_row2: "Effects, Dynamics",
+        col5_row3: "Elements, Cut Scenes, Aesthetic Layout",
+        ph_core_actions: "Core action verbs (Jump, Shoot, Trade), Game Feel...",
+        ph_core_effects: "Emergent synergies, buffs/debuffs, chain reactions...",
+        ph_core_aesthetics: "Visual style, environmental storytelling, OST/SFX...",
+
+        col6_title: "Game Interaction",
+        col6_row1: "Platform, Accessibility, Operational Systems, Technology, Frameworks",
+        col6_row2: "Controls, I/O Devices",
+        col6_row3: "Settings, Single or Multiplayer",
+        col6_row4: "Cameras, Menus, UI",
+        col6_row5: "Feedback, Scoring",
+        ph_interaction_platform: "Platforms (PC, Console, Mobile), Engine, A11y...",
+        ph_interaction_controls: "Gamepad, Mouse/Keyboard, Touch, haptics...",
+        ph_interaction_settings: "Audio/video options, single or multiplayer toggle...",
+        ph_interaction_hud: "Diegetic/standard HUD, menus, camera occlusion...",
+        ph_interaction_feedback: "Juice, screen shake, hit-stop, leaderboards...",
+
+        business_title: "Game Business",
+        business_sub: "Minimum Viable Prototype, Costs, Revenues, ROI, Channels, Positioning, Bonus Material",
+        ph_business: "Vertical Slice/MVP scope, cost breakdown, monetization model, pricing, distribution stores, Live-Ops..."
+      },
+      "pt-br": {
+        meta_game: "Jogo:",
+        meta_version: "Versão:",
+        meta_author: "Autor:",
+        btn_clear: "🗑️ Limpar",
+        btn_export_json: "📥 Exportar JSON",
+        btn_import_json: "📤 Importar JSON",
+        btn_export_png: "🖼️ Exportar PNG",
+        btn_export_pdf: "📄 Exportar PDF",
+
+        impact_title: "Impacto do Jogo",
+        impact_sub: "Emoção, Diversão, Prazer, Aprendizado, Mudanças Comportamentais, Sociabilidade, Métricas",
+        ph_impact: "Digite o impacto emocional, propósito, aprendizado, dinamismo social e métricas de sucesso...",
+
+        col1_title: "Conceito",
+        col1_row1: "Nome, Título, Versão",
+        col1_row2: "Objetivo, Intenção, Ideia",
+        col1_row3: "Tema, História, Inspiração",
+        col1_row4: "Gênero, Tipo",
+        ph_concept_name: "Título de trabalho, codinome, marco de versão...",
+        ph_concept_objective: "Intenção central, High Concept Pitch, USP...",
+        ph_concept_theme: "Universo, premissa, tom, lore, referências visuais...",
+        ph_concept_genre: "Gênero principal, subgêneros híbridos, ritmo, câmera...",
+
+        col2_title: "Jogador",
+        col2_row1: "Idade / Faixa Etária",
+        col2_row2: "Tipo, Segmento",
+        col2_row3: "Número de Jogadores",
+        col2_row4: "Comunidade",
+        col2_row5: "Personagem / Avatar",
+        ph_player_age: "Faixa etária-alvo, classificação indicativa...",
+        ph_player_type: "Arquétipos de Bartle: Conquistador, Explorador, Social, Predador...",
+        ph_player_number: "Single-player, Co-op, PvP, MMO...",
+        ph_player_community: "Canais da comunidade, Discord, streaming, clãs...",
+        ph_player_character: "Persona do avatar, apego do jogador, customização...",
+
+        col3_title: "Gameplay",
+        col3_row1: "Início, Fluxo de Intenção, Fim, Condição de Vitória",
+        col3_row2: "Regras, Opções, Poderes, Comportamentos",
+        col3_row3: "Objetivos, Missões, Desafios, Inimigos & Chefes",
+        col3_row4: "Limites, Espaço, Level Design, Mundo",
+        col3_row5: "Recursos, Objetos, Cena, Janela",
+        col3_row6: "Componentes, Elementos de Jogo",
+        col3_row7: "Punição, Falha / Derrota",
+        col3_row8: "Recompensa, Evolução / Melhoria",
+        ph_gameplay_flow: "Início da partida, fluxo, condições de vitória e derrota...",
+        ph_gameplay_rules: "Regras invioláveis do sistema, poderes, restrições...",
+        ph_gameplay_goals: "Missões principais/secundárias, arquétipos de inimigos, chefes...",
+        ph_gameplay_boundaries: "Espaços do mundo, biomas, progressão de fases...",
+        ph_gameplay_resources: "Itens, inventário, economia interna, interações...",
+        ph_gameplay_components: "Peças tangíveis, cartas, dados, elementos de jogo...",
+        ph_gameplay_punishment: "Penalidades de morte, perda de recursos...",
+        ph_gameplay_reward: "XP, Loot, melhorias, progressão de maestria...",
+
+        col4_title: "Fluxo",
+        col4_row1: "Loops, Turnos / Ciclos",
+        col4_row2: "Tempo, Aleatoriedade (RNG), IA",
+        col4_row3: "Escolhas, Decisões, Incerteza, Antecipação, Experiência",
+        col4_row4: "Desafios de Habilidade, Incentivo, Longevidade",
+        ph_flow_loops: "Micro-loop (segundos), Meso (sessão), Macro (campanha)...",
+        ph_flow_randomness: "Ritmo, geração procedural, RNG balanceado, IA adaptativa...",
+        ph_flow_choices: "Dilemas táticos/morais, risco vs recompensa, estado de Flow...",
+        ph_flow_challenges: "Desafios motores/cognitivos, New Game+, longevidade...",
+
+        col5_title: "Núcleo (Core)",
+        col5_row1: "Ações, Mecânicas",
+        col5_row2: "Efeitos, Dinâmicas",
+        col5_row3: "Elementos, Cutscenes, Layout Estético / Arte",
+        ph_core_actions: "Verbos de ação principais (Pular, Atirar, Negociar), Game Feel...",
+        ph_core_effects: "Sinergias emergentes, buffs/debuffs, reações em cadeia...",
+        ph_core_aesthetics: "Estilo visual, narrativa ambiental, trilha sonora/SFX...",
+
+        col6_title: "Interação & UI",
+        col6_row1: "Plataforma, Acessibilidade, Sistemas Operacionais, Tecnologia, Frameworks",
+        col6_row2: "Controles, Dispositivos de E/S (Inputs)",
+        col6_row3: "Configurações, Single ou Multiplayer",
+        col6_row4: "Câmeras, Menus, Interface (UI)",
+        col6_row5: "Feedback Sensorial, Pontuação (Score)",
+        ph_interaction_platform: "Plataformas (PC, Consoles, Mobile), Engine, diretrizes A11y...",
+        ph_interaction_controls: "Gamepad, Teclado/Mouse, Touch, háptica, deadzones...",
+        ph_interaction_settings: "Opções de áudio/vídeo, alternância de modos de jogo...",
+        ph_interaction_hud: "HUD diegético/padrão, menus, oclusão de câmera...",
+        ph_interaction_feedback: "Juice, screen shake, hit-stop, leaderboards, placar...",
+
+        business_title: "Negócios do Jogo",
+        business_sub: "Protótipo Mínimo Viável, Custos, Receitas, ROI, Canais, Posicionamento, Material Bônus",
+        ph_business: "Escopo do Vertical Slice/MVP, estrutura de custos, modelo de monetização, preço, canais de distribuição e Live-Ops..."
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const dict = translations[lang];
+      document.getElementById('langName').innerText = lang === 'en' ? 'EN' : 'PT-BR';
+
+      // Update text nodes
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.innerText = dict[key];
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (dict[key]) el.setAttribute('placeholder', dict[key]);
+      });
+
+      localStorage.setItem('ugc_lang_pref', lang);
+    }
+
+    function toggleLanguage() {
+      const next = currentLang === 'en' ? 'pt-br' : 'en';
+      setLanguage(next);
+      showToast(`🌐 Idioma alterado para: ${next.toUpperCase()}`);
+    }
+
+    /* ========================================================
+       PERSISTENCE & TOAST
        ======================================================== */
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -778,35 +1144,13 @@
       setTimeout(() => toast.classList.remove('show'), 2800);
     }
 
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute('data-theme') || 'dark';
-      const target = current === 'dark' ? 'light' : 'dark';
-      setTheme(target);
-    }
-
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      document.getElementById('themeName').innerText = theme === 'dark' ? 'Dark' : 'Light';
-      
-      // Update explicit SVG fill color for html2canvas compatibility
-      const arrowColor = theme === 'dark' ? '#CBD5E1' : '#000000';
-      document.querySelectorAll('.flow-chevron-svg polygon').forEach(p => {
-        p.setAttribute('fill', arrowColor);
-      });
-
-      localStorage.setItem('ugc_theme_pref_exact', theme);
-    }
-
-    /* ========================================================
-       DATA HANDLING (JSON EXPORT/IMPORT & AUTOSAVE)
-       ======================================================== */
     function gatherCanvasData() {
       const data = {
         meta: {
           gameTitle: document.getElementById('metaGameTitle').value,
           version: document.getElementById('metaVersion').value,
           author: document.getElementById('metaAuthor').value,
+          language: currentLang,
           updatedAt: new Date().toISOString()
         },
         fields: {}
@@ -823,6 +1167,7 @@
         if (data.meta.gameTitle) document.getElementById('metaGameTitle').value = data.meta.gameTitle;
         if (data.meta.version) document.getElementById('metaVersion').value = data.meta.version;
         if (data.meta.author) document.getElementById('metaAuthor').value = data.meta.author;
+        if (data.meta.language) setLanguage(data.meta.language);
       }
       if (data.fields) {
         document.querySelectorAll('[data-key]').forEach(el => {
@@ -832,19 +1177,33 @@
           }
         });
       }
+      setTimeout(autoResizeAll, 10);
     }
 
-    function saveDraft() {
+    /* AUTO-EXPANDING TEXTAREA TO FIT CONTENT EXACTLY WITHOUT SCROLLBARS */
+    function autoResizeTextarea(el) {
+      el.style.height = 'auto';
+      const minH = el.classList.contains('resizable-field-textarea') ? 24 : 28;
+      const targetH = Math.max(el.scrollHeight, minH);
+      el.style.height = targetH + 'px';
+      el.style.overflow = 'hidden';
+      el.style.overflowY = 'hidden';
+    }
+
+    function autoResizeAll() {
+      document.querySelectorAll('textarea').forEach(tx => autoResizeTextarea(tx));
+    }
+
+    function autoSave() {
       const data = gatherCanvasData();
-      localStorage.setItem('ugc_exact_saved', JSON.stringify(data));
-      showToast('💾 Dados salvos com sucesso!');
+      localStorage.setItem('ugc_faithful_data_v3', JSON.stringify(data));
     }
 
-    function loadDraft() {
-      const theme = localStorage.getItem('ugc_theme_pref_exact') || 'dark';
-      setTheme(theme);
+    function loadSavedState() {
+      const savedLang = localStorage.getItem('ugc_lang_pref') || 'en';
+      setLanguage(savedLang);
 
-      const raw = localStorage.getItem('ugc_exact_saved');
+      const raw = localStorage.getItem('ugc_faithful_data_v3');
       if (raw) {
         try {
           populateCanvasData(JSON.parse(raw));
@@ -855,7 +1214,7 @@
     function clearFields() {
       if (confirm('Deseja limpar todos os dados do canvas?')) {
         document.querySelectorAll('[data-key]').forEach(el => el.value = '');
-        localStorage.removeItem('ugc_exact_saved');
+        localStorage.removeItem('ugc_faithful_data_v3');
         showToast('🗑️ Dados limpos.');
       }
     }
@@ -886,7 +1245,7 @@
         try {
           const parsed = JSON.parse(e.target.result);
           populateCanvasData(parsed);
-          saveDraft();
+          autoSave();
           showToast('📤 JSON importado com sucesso!');
         } catch(err) {
           alert('Erro no arquivo JSON: ' + err.message);
@@ -896,47 +1255,72 @@
       event.target.value = '';
     }
 
-    /* ========================================================
-       RENDER ENGINE FOR PNG & PDF EXPORT
-       ======================================================== */
-    async function captureBlueprint(themeMode) {
-      const initialTheme = document.documentElement.getAttribute('data-theme');
-      setTheme(themeMode);
+    /* RENDER ENGINE FOR PNG & PDF EXPORT WITH FULL MULTI-LINE TEXTAREA PRESERVATION */
+    async function captureBlueprint() {
+      // First ensure all live textareas are sized properly
+      autoResizeAll();
 
       const root = document.getElementById('blueprintCaptureRoot');
       const canvas = await html2canvas(root, {
         scale: 2,
         useCORS: true,
         logging: false,
-        backgroundColor: themeMode === 'dark' ? '#080A0F' : '#FFFFFF'
-      });
+        backgroundColor: '#FFFFFF',
+        onclone: (clonedDoc) => {
+          // Replace textareas with structured pre-wrap divs to prevent html2canvas clipping
+          const textareas = clonedDoc.querySelectorAll('textarea');
+          textareas.forEach(tx => {
+            const div = clonedDoc.createElement('div');
+            div.className = tx.className;
+            div.style.cssText = window.getComputedStyle(tx).cssText;
+            
+            // Critical overrides for print/export perfection
+            div.style.whiteSpace = 'pre-wrap';
+            div.style.wordBreak = 'break-word';
+            div.style.overflow = 'visible';
+            div.style.height = 'auto';
+            div.style.minHeight = (tx.scrollHeight || 24) + 'px';
+            div.style.resize = 'none';
+            div.style.boxSizing = 'border-box';
+            div.style.display = 'block';
 
-      setTheme(initialTheme);
+            if (tx.value && tx.value.trim().length > 0) {
+              div.textContent = tx.value;
+            } else {
+              div.textContent = tx.getAttribute('placeholder') || '';
+              div.style.color = '#94A3B8';
+              div.style.fontStyle = 'italic';
+            }
+
+            tx.parentNode.replaceChild(div, tx);
+          });
+        }
+      });
       return canvas;
     }
 
-    async function exportPNG(themeMode) {
-      showToast(`⏳ Gerando PNG (${themeMode.toUpperCase()})...`);
+    async function exportPNG() {
+      showToast(`⏳ Gerando PNG em alta resolução...`);
       try {
-        const canvas = await captureBlueprint(themeMode);
+        const canvas = await captureBlueprint();
         const dataUrl = canvas.toDataURL('image/png');
         const title = document.getElementById('metaGameTitle').value || 'Game-Canvas';
         const slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
 
         const a = document.createElement('a');
         a.href = dataUrl;
-        a.download = `${slug}-${themeMode}.png`;
+        a.download = `${slug}-unified-canvas.png`;
         a.click();
-        showToast(`✅ PNG (${themeMode.toUpperCase()}) pronto!`);
+        showToast(`✅ PNG exportado com sucesso!`);
       } catch(e) {
         alert('Erro ao gerar PNG: ' + e.message);
       }
     }
 
-    async function exportPDF(themeMode) {
-      showToast(`⏳ Gerando PDF (${themeMode.toUpperCase()})...`);
+    async function exportPDF() {
+      showToast(`⏳ Gerando PDF para impressão...`);
       try {
-        const canvas = await captureBlueprint(themeMode);
+        const canvas = await captureBlueprint();
         const imgData = canvas.toDataURL('image/jpeg', 0.95);
         const { jsPDF } = window.jspdf;
 
@@ -949,19 +1333,25 @@
         pdf.addImage(imgData, 'JPEG', 0, 0, canvas.width / 2, canvas.height / 2);
         const title = document.getElementById('metaGameTitle').value || 'Game-Canvas';
         const slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-        pdf.save(`${slug}-${themeMode}.pdf`);
-        showToast(`✅ PDF (${themeMode.toUpperCase()}) pronto!`);
+        pdf.save(`${slug}-unified-canvas.pdf`);
+        showToast(`✅ PDF exportado com sucesso!`);
       } catch(e) {
         alert('Erro ao gerar PDF: ' + e.message);
       }
     }
 
-    document.addEventListener('input', () => {
-      const data = gatherCanvasData();
-      localStorage.setItem('ugc_exact_saved', JSON.stringify(data));
+    // Auto-save silently and auto-expand on typing
+    document.addEventListener('input', (e) => {
+      if (e.target.tagName === 'TEXTAREA') {
+        autoResizeTextarea(e.target);
+      }
+      autoSave();
     });
 
-    window.addEventListener('DOMContentLoaded', loadDraft);
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedState();
+      autoResizeAll();
+    });
   </script>
 </body>
 </html>
