@@ -287,31 +287,32 @@
     }
 
     /* =========================================================
-       PROMINENT LARGE CHEVRONS (20px-24px HEIGHT)
+       CHEVRONS COM BASE ESQUERDA ALINHADA À LINHA (PROJEÇÃO À DIR)
+       Base vertical (28px) > Lados diagonais (21.2px)
        ========================================================= */
     .chevron-glyph {
       position: absolute;
       width: 16px;
-      height: 24px;
+      height: 28px;
       z-index: 10;
       pointer-events: none;
-      transform: translate(-50%, -50%);
+      transform: translateY(-50%);
     }
 
-    /* 2 CHEVRONS ON LEFT VERTICAL WALL (COL 1) */
+    /* 2 CHEVRONS ON LEFT VERTICAL WALL (COL 1) - ALINHADOS NA BORDA ESQUERDA */
     .chevron-left-top { left: 0; top: 25%; }
     .chevron-left-bot { left: 0; top: 75%; }
 
-    /* 2 CHEVRONS ON RIGHT VERTICAL WALL (COL 6) */
-    .chevron-right-top { left: 100%; top: 25%; }
-    .chevron-right-bot { left: 100%; top: 75%; }
-
-    /* 5 CHEVRONS ON INTERNAL DIVIDERS AT MIDLINE (50%) */
+    /* 5 CHEVRONS ON INTERNAL DIVIDERS AT MIDLINE (50%) - ALINHADOS NA DIVISÓRIA */
     .chevron-div-1 { left: 16.666%; top: 50%; }
     .chevron-div-2 { left: 33.333%; top: 50%; }
     .chevron-div-3 { left: 50.000%; top: 50%; }
     .chevron-div-4 { left: 66.666%; top: 50%; }
     .chevron-div-5 { left: 83.333%; top: 50%; }
+
+    /* 2 CHEVRONS ON RIGHT VERTICAL WALL (COL 6) - ALINHADOS NA BORDA DIREITA */
+    .chevron-right-top { left: 100%; top: 25%; }
+    .chevron-right-bot { left: 100%; top: 75%; }
 
     /* INDIVIDUAL COLUMN (ÁREA VERTICAL CONTÍNUA) */
     .canvas-column {
@@ -334,11 +335,11 @@
       letter-spacing: 0.1px;
     }
 
-    /* SUB-SECTION WITH RESIZABLE TEXTAREA */
+    /* SUB-SECTION WITH PADDING ESQUERDO PARA ACOMODAR OS CHEVRONS */
     .column-topic-block {
       display: flex;
       flex-direction: column;
-      padding: 8px 8px;
+      padding: 8px 10px 8px 22px;
       flex: 1;
       gap: 4px;
     }
@@ -568,40 +569,41 @@
       <!-- INNER 6-COLUMN RECTANGLE (O BLOCO CENTRAL DAS 6 COLUNAS) -->
       <div class="inner-6col-box">
 
-        <!-- ==============================================
-             LARGE PROMINENT CHEVRONS (24px HEIGHT)
-             ============================================== -->
+        <!-- =========================================================
+             CHEVRONS (BASE ESQUERDA ALINHADA À LINHA, PROJETANDO À DIR)
+             Base (28px) > Lados Diagonais (21.2px)
+             ========================================================= -->
         <!-- 2 Chevrons on Left Vertical Wall of Column 1 -->
-        <svg class="chevron-glyph chevron-left-top" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-left-top" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="chevron-glyph chevron-left-bot" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-left-bot" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
 
         <!-- 5 Chevrons on Internal Column Dividers at Midline -->
-        <svg class="chevron-glyph chevron-div-1" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-div-1" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="chevron-glyph chevron-div-2" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-div-2" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="chevron-glyph chevron-div-3" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-div-3" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="chevron-glyph chevron-div-4" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-div-4" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="chevron-glyph chevron-div-5" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-div-5" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
 
         <!-- 2 Chevrons on Right Vertical Wall of Column 6 -->
-        <svg class="chevron-glyph chevron-right-top" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-right-top" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="chevron-glyph chevron-right-bot" viewBox="0 0 16 24">
-          <polygon points="0,0 16,12 0,24" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-right-bot" viewBox="0 0 16 28">
+          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
         </svg>
 
         <!-- ==============================================
@@ -832,7 +834,7 @@
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       document.getElementById('themeName').innerText = theme === 'dark' ? 'Dark' : 'Light';
-      localStorage.setItem('ugc_theme_pref_faithful_v3', theme);
+      localStorage.setItem('ugc_theme_pref_faithful_v4', theme);
     }
 
     /* ========================================================
@@ -873,15 +875,15 @@
 
     function saveDraft() {
       const data = gatherCanvasData();
-      localStorage.setItem('ugc_faithful_v3_saved', JSON.stringify(data));
+      localStorage.setItem('ugc_faithful_v4_saved', JSON.stringify(data));
       showToast('💾 Dados salvos com sucesso!');
     }
 
     function loadDraft() {
-      const theme = localStorage.getItem('ugc_theme_pref_faithful_v3');
+      const theme = localStorage.getItem('ugc_theme_pref_faithful_v4');
       if (theme) setTheme(theme);
 
-      const raw = localStorage.getItem('ugc_faithful_v3_saved');
+      const raw = localStorage.getItem('ugc_faithful_v4_saved');
       if (raw) {
         try {
           populateCanvasData(JSON.parse(raw));
@@ -892,7 +894,7 @@
     function clearFields() {
       if (confirm('Deseja limpar todos os dados do canvas?')) {
         document.querySelectorAll('[data-key]').forEach(el => el.value = '');
-        localStorage.removeItem('ugc_faithful_v3_saved');
+        localStorage.removeItem('ugc_faithful_v4_saved');
         showToast('🗑️ Dados limpos.');
       }
     }
@@ -995,7 +997,7 @@
 
     document.addEventListener('input', () => {
       const data = gatherCanvasData();
-      localStorage.setItem('ugc_faithful_v3_saved', JSON.stringify(data));
+      localStorage.setItem('ugc_faithful_v4_saved', JSON.stringify(data));
     });
 
     window.addEventListener('DOMContentLoaded', loadDraft);
