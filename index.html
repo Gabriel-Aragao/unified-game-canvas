@@ -287,32 +287,32 @@
     }
 
     /* =========================================================
-       CHEVRONS COM BASE ESQUERDA ALINHADA À LINHA (PROJEÇÃO À DIR)
-       Base vertical (28px) > Lados diagonais (21.2px)
+       CHEVRONS COM BASE MAIOR (36px) E ALTURA MENOR (10px)
+       Base vertical = 36px, Altura horizontal = 10px
        ========================================================= */
     .chevron-glyph {
       position: absolute;
-      width: 16px;
-      height: 28px;
+      width: 10px;
+      height: 36px;
       z-index: 10;
       pointer-events: none;
       transform: translateY(-50%);
     }
 
-    /* 2 CHEVRONS ON LEFT VERTICAL WALL (COL 1) - ALINHADOS NA BORDA ESQUERDA */
-    .chevron-left-top { left: 0; top: 25%; }
-    .chevron-left-bot { left: 0; top: 75%; }
+    /* 2 CHEVRONS NA ENTRADA (COL 1) - VERTICALMENTE APROXIMADOS (38% E 62%) */
+    .chevron-left-top { left: 0; top: 38%; }
+    .chevron-left-bot { left: 0; top: 62%; }
 
-    /* 5 CHEVRONS ON INTERNAL DIVIDERS AT MIDLINE (50%) - ALINHADOS NA DIVISÓRIA */
+    /* 5 CHEVRONS NAS DIVISÓRIAS INTERNAS NA LINHA MÉDIA (50%) */
     .chevron-div-1 { left: 16.666%; top: 50%; }
     .chevron-div-2 { left: 33.333%; top: 50%; }
     .chevron-div-3 { left: 50.000%; top: 50%; }
     .chevron-div-4 { left: 66.666%; top: 50%; }
     .chevron-div-5 { left: 83.333%; top: 50%; }
 
-    /* 2 CHEVRONS ON RIGHT VERTICAL WALL (COL 6) - ALINHADOS NA BORDA DIREITA */
-    .chevron-right-top { left: 100%; top: 25%; }
-    .chevron-right-bot { left: 100%; top: 75%; }
+    /* 2 CHEVRONS NA SAÍDA (COL 6) - VERTICALMENTE APROXIMADOS (38% E 62%) */
+    .chevron-right-top { left: 100%; top: 38%; }
+    .chevron-right-bot { left: 100%; top: 62%; }
 
     /* INDIVIDUAL COLUMN (ÁREA VERTICAL CONTÍNUA) */
     .canvas-column {
@@ -335,11 +335,11 @@
       letter-spacing: 0.1px;
     }
 
-    /* SUB-SECTION WITH PADDING ESQUERDO PARA ACOMODAR OS CHEVRONS */
+    /* SUB-SECTION WITH RESIZABLE TEXTAREA E PADDING DE RESPIRO */
     .column-topic-block {
       display: flex;
       flex-direction: column;
-      padding: 8px 10px 8px 22px;
+      padding: 8px 10px 8px 18px;
       flex: 1;
       gap: 4px;
     }
@@ -570,40 +570,39 @@
       <div class="inner-6col-box">
 
         <!-- =========================================================
-             CHEVRONS (BASE ESQUERDA ALINHADA À LINHA, PROJETANDO À DIR)
-             Base (28px) > Lados Diagonais (21.2px)
+             CHEVRONS (BASE MAIOR = 36px, ALTURA MENOR = 10px)
              ========================================================= -->
-        <!-- 2 Chevrons on Left Vertical Wall of Column 1 -->
-        <svg class="chevron-glyph chevron-left-top" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
+        <!-- 2 Chevrons na parede esquerda (Coluna 1) - Aproximados (38% e 62%) -->
+        <svg class="chevron-glyph chevron-left-top" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="chevron-glyph chevron-left-bot" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
-        </svg>
-
-        <!-- 5 Chevrons on Internal Column Dividers at Midline -->
-        <svg class="chevron-glyph chevron-div-1" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
-        </svg>
-        <svg class="chevron-glyph chevron-div-2" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
-        </svg>
-        <svg class="chevron-glyph chevron-div-3" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
-        </svg>
-        <svg class="chevron-glyph chevron-div-4" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
-        </svg>
-        <svg class="chevron-glyph chevron-div-5" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-left-bot" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
 
-        <!-- 2 Chevrons on Right Vertical Wall of Column 6 -->
-        <svg class="chevron-glyph chevron-right-top" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
+        <!-- 5 Chevrons nas divisórias internas na linha média (50%) -->
+        <svg class="chevron-glyph chevron-div-1" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
-        <svg class="chevron-glyph chevron-right-bot" viewBox="0 0 16 28">
-          <polygon points="0,0 16,14 0,28" fill="var(--arrow-color)"/>
+        <svg class="chevron-glyph chevron-div-2" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
+        </svg>
+        <svg class="chevron-glyph chevron-div-3" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
+        </svg>
+        <svg class="chevron-glyph chevron-div-4" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
+        </svg>
+        <svg class="chevron-glyph chevron-div-5" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
+        </svg>
+
+        <!-- 2 Chevrons na parede direita (Coluna 6) - Aproximados (38% e 62%) -->
+        <svg class="chevron-glyph chevron-right-top" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
+        </svg>
+        <svg class="chevron-glyph chevron-right-bot" viewBox="0 0 10 36">
+          <polygon points="0,0 10,18 0,36" fill="var(--arrow-color)"/>
         </svg>
 
         <!-- ==============================================
@@ -627,7 +626,7 @@
             <textarea class="resizable-field-textarea" data-key="concept_theme" placeholder="Universo, premissa, tom, lore, referências..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label">Genre, Type</span>
             <textarea class="resizable-field-textarea" data-key="concept_genre" placeholder="Gênero, subgêneros, ritmo, escala, câmera..."></textarea>
           </div>
@@ -659,7 +658,7 @@
             <textarea class="resizable-field-textarea" data-key="player_community" placeholder="Canais comunitários, guilds, hubs..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label">Character</span>
             <textarea class="resizable-field-textarea" data-key="player_character" placeholder="Persona do avatar, customização, conexão..."></textarea>
           </div>
@@ -733,7 +732,7 @@
             <textarea class="resizable-field-textarea" data-key="flow_choices" placeholder="Dilemas morais/táticos, tensão, antecipação, estado de Flow..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label">Skill Challenges, Incentive, Longevity</span>
             <textarea class="resizable-field-textarea" data-key="flow_challenges" placeholder="Desafios cognitivos/motores, New Game+, replayability..."></textarea>
           </div>
@@ -755,7 +754,7 @@
             <textarea class="resizable-field-textarea" data-key="core_effects" style="min-height:75px;" placeholder="Sinergias emergentes, buffs/debuffs, reações..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label">Elements, Cut Scenes, Aesthetic Layout</span>
             <textarea class="resizable-field-textarea" data-key="core_aesthetics" style="min-height:75px;" placeholder="Identidade visual, cutscenes, narrativa ambiental, trilha..."></textarea>
           </div>
@@ -834,7 +833,7 @@
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       document.getElementById('themeName').innerText = theme === 'dark' ? 'Dark' : 'Light';
-      localStorage.setItem('ugc_theme_pref_faithful_v4', theme);
+      localStorage.setItem('ugc_theme_pref_faithful_v5', theme);
     }
 
     /* ========================================================
@@ -875,15 +874,15 @@
 
     function saveDraft() {
       const data = gatherCanvasData();
-      localStorage.setItem('ugc_faithful_v4_saved', JSON.stringify(data));
+      localStorage.setItem('ugc_faithful_v5_saved', JSON.stringify(data));
       showToast('💾 Dados salvos com sucesso!');
     }
 
     function loadDraft() {
-      const theme = localStorage.getItem('ugc_theme_pref_faithful_v4');
+      const theme = localStorage.getItem('ugc_theme_pref_faithful_v5');
       if (theme) setTheme(theme);
 
-      const raw = localStorage.getItem('ugc_faithful_v4_saved');
+      const raw = localStorage.getItem('ugc_faithful_v5_saved');
       if (raw) {
         try {
           populateCanvasData(JSON.parse(raw));
@@ -894,7 +893,7 @@
     function clearFields() {
       if (confirm('Deseja limpar todos os dados do canvas?')) {
         document.querySelectorAll('[data-key]').forEach(el => el.value = '');
-        localStorage.removeItem('ugc_faithful_v4_saved');
+        localStorage.removeItem('ugc_faithful_v5_saved');
         showToast('🗑️ Dados limpos.');
       }
     }
@@ -997,7 +996,7 @@
 
     document.addEventListener('input', () => {
       const data = gatherCanvasData();
-      localStorage.setItem('ugc_faithful_v4_saved', JSON.stringify(data));
+      localStorage.setItem('ugc_faithful_v5_saved', JSON.stringify(data));
     });
 
     window.addEventListener('DOMContentLoaded', loadDraft);
