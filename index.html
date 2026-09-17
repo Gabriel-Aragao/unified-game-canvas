@@ -24,7 +24,7 @@
       --bg-page: #F1F5F9;
       --bg-canvas: #FFFFFF;
       --bg-toolbar: #FFFFFF;
-      --bg-input: #FFFFFF;
+      --bg-input: #FAFCFE;
       --bg-wing: #F8FAFC;
       
       --border-master: #1E293B;
@@ -276,6 +276,7 @@
       margin-bottom: 10px;
     }
 
+    /* RESIZABLE IMPACT TEXTAREA */
     .resizable-impact-input {
       width: 100%;
       background: #FFFFFF;
@@ -286,12 +287,14 @@
       font-size: 11.5px;
       line-height: 1.55;
       padding: 10px 14px;
-      min-height: 75px;
-      resize: vertical;
-      overflow: auto;
+      min-height: 80px;
+      height: 80px;
+      resize: vertical !important;
+      overflow: auto !important;
       outline: none;
-      transition: all 0.15s ease;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      display: block;
     }
     .resizable-impact-input:focus {
       border-color: var(--accent-impact);
@@ -375,12 +378,13 @@
       flex-direction: column;
       border-right: 1.5px solid var(--border-line);
       position: relative;
+      height: 100%;
     }
     .canvas-column:last-child {
       border-right: none;
     }
 
-    /* COLUMN HEADER COM TIPOGRAFIA SPACE GROTESK & COR DISTINTIVA */
+    /* COLUMN HEADER */
     .column-header-title {
       font-family: var(--font-display);
       font-size: 14px;
@@ -402,13 +406,14 @@
     .col-core .column-header-title    { border-top: 4px solid var(--c-core); color: var(--c-core); background: var(--c-core-bg); }
     .col-interaction .column-header-title { border-top: 4px solid var(--c-interact); color: var(--c-interact); background: var(--c-interact-bg); }
 
-    /* SUB-SECTION WITH RESIZABLE TEXTAREA E PADDING DE RESPIRO */
+    /* SUB-SECTION CONTAINER (ALLOWS RESIZING WITHOUT FLEX CRUSH) */
     .column-topic-block {
-      display: flex;
-      flex-direction: column;
-      padding: 9px 10px 9px 18px;
-      flex: 1;
-      gap: 5px;
+      display: block;
+      padding: 8px 10px 8px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .column-topic-block:last-child {
+      border-bottom: none;
     }
 
     .topic-label {
@@ -416,8 +421,11 @@
       font-weight: 700;
       color: var(--text-header);
       line-height: 1.35;
+      margin-bottom: 4px;
+      display: block;
     }
 
+    /* RESIZABLE TEXTAREA INSIDE COLUMNS */
     .resizable-field-textarea {
       width: 100%;
       background: #FAFCFE;
@@ -429,11 +437,12 @@
       line-height: 1.45;
       padding: 7px 9px;
       min-height: 60px;
-      resize: vertical;
-      overflow: auto;
+      height: 62px;
+      resize: vertical !important;
+      overflow: auto !important;
       outline: none;
-      flex: 1;
-      transition: all 0.15s ease;
+      display: block;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
     }
     .resizable-field-textarea:hover {
@@ -495,6 +504,7 @@
       margin-bottom: 10px;
     }
 
+    /* RESIZABLE BUSINESS TEXTAREA */
     .resizable-business-input {
       width: 100%;
       background: #FFFFFF;
@@ -505,12 +515,14 @@
       font-size: 11.5px;
       line-height: 1.55;
       padding: 10px 14px;
-      min-height: 75px;
-      resize: vertical;
-      overflow: auto;
+      min-height: 80px;
+      height: 80px;
+      resize: vertical !important;
+      overflow: auto !important;
       outline: none;
-      transition: all 0.15s ease;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      display: block;
     }
     .resizable-business-input:focus {
       border-color: var(--accent-business);
@@ -715,9 +727,9 @@
             <textarea class="resizable-field-textarea" data-key="concept_theme" data-i18n-ph="ph_concept_theme" placeholder="Universo, premissa, tom, lore, referências..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
+          <div class="column-topic-block">
             <span class="topic-label" data-i18n="col1_row4">Genre, Type</span>
-            <textarea class="resizable-field-textarea" data-key="concept_genre" data-i18n-ph="ph_concept_genre" placeholder="Gênero, subgêneros, ritmo, escala, câmera..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="concept_genre" placeholder="Gênero, subgêneros, ritmo, escala, câmera..."></textarea>
           </div>
         </article>
 
@@ -747,7 +759,7 @@
             <textarea class="resizable-field-textarea" data-key="player_community" data-i18n-ph="ph_player_community" placeholder="Canais comunitários, guilds, hubs..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
+          <div class="column-topic-block">
             <span class="topic-label" data-i18n="col2_row5">Character</span>
             <textarea class="resizable-field-textarea" data-key="player_character" data-i18n-ph="ph_player_character" placeholder="Persona do avatar, customização, conexão..."></textarea>
           </div>
@@ -761,42 +773,42 @@
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col3_row1">Start, Intention-Flow, End, Win Condition</span>
-            <textarea class="resizable-field-textarea" data-key="gameplay_flow" style="min-height:50px;" data-i18n-ph="ph_gameplay_flow" placeholder="Condições de vitória, derrota, início e encerramento..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="gameplay_flow" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_flow" placeholder="Condições de vitória, derrota, início e encerramento..."></textarea>
           </div>
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col3_row2">Rules, Options, Powers, Behaviors</span>
-            <textarea class="resizable-field-textarea" data-key="gameplay_rules" style="min-height:50px;" data-i18n-ph="ph_gameplay_rules" placeholder="Regras invioláveis, restrições, habilidades..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="gameplay_rules" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_rules" placeholder="Regras invioláveis, restrições, habilidades..."></textarea>
           </div>
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col3_row3">Goals, Mission, Challenges, Enemy &amp; Boss</span>
-            <textarea class="resizable-field-textarea" data-key="gameplay_goals" style="min-height:50px;" data-i18n-ph="ph_gameplay_goals" placeholder="Missões, desafios, tipos de inimigos, bosses..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="gameplay_goals" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_goals" placeholder="Missões, desafios, tipos de inimigos, bosses..."></textarea>
           </div>
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col3_row4">Boundaries, Space, Level Design, World</span>
-            <textarea class="resizable-field-textarea" data-key="gameplay_boundaries" style="min-height:50px;" data-i18n-ph="ph_gameplay_boundaries" placeholder="Limites espaciais, biomas, estrutura de fases..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="gameplay_boundaries" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_boundaries" placeholder="Limites espaciais, biomas, estrutura de fases..."></textarea>
           </div>
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col3_row5">Resources, Objects, Scene, Window</span>
-            <textarea class="resizable-field-textarea" data-key="gameplay_resources" style="min-height:50px;" data-i18n-ph="ph_gameplay_resources" placeholder="Recursos, itens, inventário, elementos de cena..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="gameplay_resources" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_resources" placeholder="Recursos, itens, inventário, elementos de cena..."></textarea>
           </div>
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col3_row6">Components, Play Elements</span>
-            <textarea class="resizable-field-textarea" data-key="gameplay_components" style="min-height:50px;" data-i18n-ph="ph_gameplay_components" placeholder="Componentes tangíveis e peças de jogo..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="gameplay_components" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_components" placeholder="Componentes tangíveis e peças de jogo..."></textarea>
           </div>
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col3_row7">Punishment, Failure</span>
-            <textarea class="resizable-field-textarea" data-key="gameplay_punishment" style="min-height:50px;" data-i18n-ph="ph_gameplay_punishment" placeholder="Penalidades por falha, perda de recursos..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="gameplay_punishment" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_punishment" placeholder="Penalidades por falha, perda de recursos..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
+          <div class="column-topic-block">
             <span class="topic-label" data-i18n="col3_row8">Reward, Improvement</span>
-            <textarea class="resizable-field-textarea" data-key="gameplay_reward" style="min-height:50px;" data-i18n-ph="ph_gameplay_reward" placeholder="Recompensas (XP, Loot), progressão, maestria..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="gameplay_reward" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_reward" placeholder="Recompensas (XP, Loot), progressão, maestria..."></textarea>
           </div>
         </article>
 
@@ -821,7 +833,7 @@
             <textarea class="resizable-field-textarea" data-key="flow_choices" data-i18n-ph="ph_flow_choices" placeholder="Dilemas morais/táticos, tensão, antecipação, estado de Flow..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
+          <div class="column-topic-block">
             <span class="topic-label" data-i18n="col4_row4">Skill Challenges, Incentive, Longevity</span>
             <textarea class="resizable-field-textarea" data-key="flow_challenges" data-i18n-ph="ph_flow_challenges" placeholder="Desafios cognitivos/motores, New Game+, replayability..."></textarea>
           </div>
@@ -835,17 +847,17 @@
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col5_row1">Actions, Mechanics</span>
-            <textarea class="resizable-field-textarea" data-key="core_actions" style="min-height:75px;" data-i18n-ph="ph_core_actions" placeholder="Verbos de ação (Pular, Atirar, Negociar), Game Feel..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="core_actions" style="min-height:75px; height:80px;" data-i18n-ph="ph_core_actions" placeholder="Verbos de ação (Pular, Atirar, Negociar), Game Feel..."></textarea>
           </div>
 
           <div class="column-topic-block">
             <span class="topic-label" data-i18n="col5_row2">Effects, Dynamics</span>
-            <textarea class="resizable-field-textarea" data-key="core_effects" style="min-height:75px;" data-i18n-ph="ph_core_effects" placeholder="Sinergias emergentes, buffs/debuffs, reações..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="core_effects" style="min-height:75px; height:80px;" data-i18n-ph="ph_core_effects" placeholder="Sinergias emergentes, buffs/debuffs, reações..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
+          <div class="column-topic-block">
             <span class="topic-label" data-i18n="col5_row3">Elements, Cut Scenes, Aesthetic Layout</span>
-            <textarea class="resizable-field-textarea" data-key="core_aesthetics" style="min-height:75px;" data-i18n-ph="ph_core_aesthetics" placeholder="Identidade visual, cutscenes, narrativa ambiental, trilha..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="core_aesthetics" style="min-height:75px; height:80px;" data-i18n-ph="ph_core_aesthetics" placeholder="Identidade visual, cutscenes, narrativa ambiental, trilha..."></textarea>
           </div>
         </article>
 
@@ -875,7 +887,7 @@
             <textarea class="resizable-field-textarea" data-key="interaction_hud" data-i18n-ph="ph_interaction_hud" placeholder="HUD diegético/tradicional, menus, oclusão de câmera..."></textarea>
           </div>
 
-          <div class="column-topic-block" style="flex:1;">
+          <div class="column-topic-block">
             <span class="topic-label" data-i18n="col6_row5">Feedback, Scoring</span>
             <textarea class="resizable-field-textarea" data-key="interaction_feedback" data-i18n-ph="ph_interaction_feedback" placeholder="Juice, screen shake, hit-stop, leaderboards, placar..."></textarea>
           </div>
