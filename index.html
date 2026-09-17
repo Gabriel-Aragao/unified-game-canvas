@@ -21,15 +21,13 @@
       --bg-body: #090B10;
       --bg-canvas: #0F131C;
       --bg-cell: #131824;
-      --bg-cell-hover: #181F2E;
-      --bg-input: transparent;
+      --bg-cell-hover: #161D2C;
+      --bg-input: #0B0E17;
       
       --border-master: #2D3748;
       --border-grid: #1F2737;
-      --border-grid-subtle: #18202F;
+      --border-grid-subtle: #252F42;
       --border-focus: #4F46E5;
-      
-      --accent-flow: #6366F1;
       
       --text-title: #F8FAFC;
       --text-header: #E2E8F0;
@@ -46,14 +44,12 @@
       --bg-canvas: #FFFFFF;
       --bg-cell: #FAFCFE;
       --bg-cell-hover: #F1F5F9;
-      --bg-input: transparent;
+      --bg-input: #FFFFFF;
       
       --border-master: #CBD5E1;
       --border-grid: #E2E8F0;
-      --border-grid-subtle: #F1F5F9;
+      --border-grid-subtle: #CBD5E1;
       --border-focus: #4F46E5;
-      
-      --accent-flow: #4F46E5;
       
       --text-title: #0F172A;
       --text-header: #1E293B;
@@ -213,8 +209,8 @@
     }
 
     .meta-input-field {
-      background: transparent;
-      border: 1px solid var(--border-grid);
+      background: var(--bg-input);
+      border: 1px solid var(--border-grid-subtle);
       border-radius: 4px;
       color: var(--text-title);
       font-family: var(--font-sans);
@@ -302,7 +298,6 @@
       letter-spacing: 0.1px;
     }
 
-    /* Subtle chevron between columns */
     .col-arrow {
       font-size: 9px;
       color: var(--text-dim);
@@ -325,7 +320,7 @@
     }
 
     /* =========================================================
-       SEAMLESS GRID CELLS & MINIMAL INPUT FIELDS
+       SEAMLESS GRID CELLS & RESIZABLE TEXTAREAS
        ========================================================= */
     .grid-cell {
       display: flex;
@@ -335,7 +330,7 @@
       padding: 8px 10px;
       background: var(--bg-canvas);
       transition: background 0.15s ease;
-      min-height: 80px;
+      min-height: 84px;
     }
     .grid-cell:hover {
       background: var(--bg-cell-hover);
@@ -352,27 +347,34 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 3px;
+      margin-bottom: 5px;
     }
 
     .cell-title {
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--text-header);
     }
 
+    /* RESIZABLE TEXTAREA STYLING */
     .cell-textarea {
       width: 100%;
-      flex: 1;
       background: var(--bg-input);
-      border: none;
-      outline: none;
+      border: 1px solid var(--border-grid-subtle);
+      border-radius: 4px;
       color: var(--text-body);
       font-family: var(--font-sans);
       font-size: 11px;
       line-height: 1.4;
-      resize: none;
-      min-height: 48px;
+      padding: 6px 8px;
+      min-height: 52px;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .cell-textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 1px var(--border-focus);
     }
     .cell-textarea::placeholder {
       color: var(--text-dim);
@@ -383,7 +385,7 @@
     .cell-footer-hint {
       font-size: 9px;
       color: var(--text-dim);
-      margin-top: 3px;
+      margin-top: 4px;
       line-height: 1.25;
       font-family: var(--font-mono);
     }
@@ -441,6 +443,12 @@
       }
       .grid-cell {
         border-color: #CCC !important;
+      }
+      .cell-textarea {
+        border: 1px solid #DDD !important;
+        background: #FFF !important;
+        color: #000 !important;
+        resize: none !important;
       }
     }
   </style>
