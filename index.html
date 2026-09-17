@@ -1267,22 +1267,6 @@
         logging: false,
         backgroundColor: '#FFFFFF',
         onclone: (clonedDoc) => {
-          // Explicitly ensure SVG chevrons render with 100% vector visibility in html2canvas
-          const chevrons = clonedDoc.querySelectorAll('.chevron-glyph');
-          chevrons.forEach(svg => {
-            svg.style.filter = 'none';
-            svg.style.webkitFilter = 'none';
-            svg.style.overflow = 'visible';
-            svg.style.display = 'block';
-            svg.style.visibility = 'visible';
-            svg.style.opacity = '1';
-            const poly = svg.querySelector('polygon');
-            if (poly) {
-              poly.setAttribute('fill', '#312E81');
-              poly.style.fill = '#312E81';
-            }
-          });
-
           // Replace textareas with structured pre-wrap divs to prevent html2canvas clipping
           const textareas = clonedDoc.querySelectorAll('textarea');
           textareas.forEach(tx => {
@@ -1312,6 +1296,53 @@
           });
         }
       });
+
+      // DIRECT 2D CANVAS DRAWING OF CHEVRONS:
+      // Guarantees 100% vector-sharp visibility on exported PNG and PDF without relying on SVG DOM rasterization
+      try {
+        const ctx = canvas.getContext('2d');
+        const scale = 2;
+        const rootRect = root.getBoundingClientRect();
+        const innerBox = document.querySelector('.inner-6col-box');
+        
+        if (innerBox && ctx) {
+          const boxRect = innerBox.getBoundingClientRect();
+          const offsetX = (boxRect.left - rootRect.left) * scale;
+          const offsetY = (boxRect.top - rootRect.top) * scale;
+          const boxW = boxRect.width * scale;
+          const boxH = boxRect.height * scale;
+          const colW = boxW / 6;
+
+          const chevronW = 10 * scale;
+          const chevronH = 36 * scale;
+          ctx.fillStyle = '#312E81';
+
+          function paintChevron(cx, cy) {
+            ctx.beginPath();
+            ctx.moveTo(cx - chevronW / 2, cy - chevronH / 2);
+            ctx.lineTo(cx + chevronW / 2, cy);
+            ctx.lineTo(cx - chevronW / 2, cy + chevronH / 2);
+            ctx.closePath();
+            ctx.fill();
+          }
+
+          // 1. Entrance chevrons on Col 1 left border (at 38% and 62%)
+          paintChevron(offsetX, offsetY + boxH * 0.38);
+          paintChevron(offsetX, offsetY + boxH * 0.62);
+
+          // 2. 5 Internal divider chevrons (at 50% midline)
+          for (let i = 1; i <= 5; i++) {
+            paintChevron(offsetX + colW * i, offsetY + boxH * 0.50);
+          }
+
+          // 3. Exit chevrons on Col 6 right border (at 38% and 62%)
+          paintChevron(offsetX + boxW, offsetY + boxH * 0.38);
+          paintChevron(offsetX + boxW, offsetY + boxH * 0.62);
+        }
+      } catch (err) {
+        console.error('Error drawing chevrons on export canvas:', err);
+      }
+
       return canvas;
     }
 
