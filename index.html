@@ -290,7 +290,7 @@
       min-height: 28px;
       height: 28px;
       resize: vertical !important;
-      overflow: auto !important;
+      overflow: hidden !important;
       outline: none;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
@@ -449,7 +449,7 @@
       min-height: 24px;
       height: 24px;
       resize: vertical !important;
-      overflow: auto !important;
+      overflow: hidden !important;
       outline: none;
       display: block;
       transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
@@ -528,7 +528,7 @@
       min-height: 28px;
       height: 28px;
       resize: vertical !important;
-      overflow: auto !important;
+      overflow: hidden !important;
       outline: none;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
@@ -1180,10 +1180,14 @@
       setTimeout(autoResizeAll, 10);
     }
 
-    /* AUTO-EXPANDING TEXTAREA TO FIT CONTENT */
+    /* AUTO-EXPANDING TEXTAREA TO FIT CONTENT EXACTLY WITHOUT SCROLLBARS */
     function autoResizeTextarea(el) {
       el.style.height = 'auto';
-      el.style.height = Math.max(el.scrollHeight, 26) + 'px';
+      const minH = el.classList.contains('resizable-field-textarea') ? 24 : 28;
+      const targetH = Math.max(el.scrollHeight, minH);
+      el.style.height = targetH + 'px';
+      el.style.overflow = 'hidden';
+      el.style.overflowY = 'hidden';
     }
 
     function autoResizeAll() {
