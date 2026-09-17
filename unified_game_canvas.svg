@@ -1,0 +1,473 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background:#07090E; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <style>
+      .bg-blueprint { fill: #0D111A; }
+      .border-master { stroke: #3B82F6; stroke-width: 2.5; fill: none; }
+      .border-grid { stroke: #232D42; stroke-width: 1.5; }
+      .border-subtle { stroke: #1C2436; stroke-width: 1; }
+      .band-header-bg { fill: #111622; }
+      .col-header-bg { fill: #111622; }
+      .core-header-bg { fill: #1E1B4B; }
+      .text-title-master { font-size: 20px; font-weight: 800; fill: #FFFFFF; letter-spacing: 0.5px; }
+      .text-band-tag { font-size: 10px; font-weight: 800; font-family: 'Courier New', monospace; letter-spacing: 1px; }
+      .text-band-title { font-size: 15px; font-weight: 800; fill: #FFFFFF; letter-spacing: 0.5px; }
+      .text-band-sub { font-size: 11px; font-weight: 500; fill: #94A3B8; }
+      .text-col-step { font-size: 9px; font-weight: 800; fill: #3B82F6; font-family: 'Courier New', monospace; }
+      .text-col-title { font-size: 13px; font-weight: 800; fill: #FFFFFF; }
+      .text-cell-title { font-size: 11px; font-weight: 700; fill: #E2E8F0; }
+      .text-cell-prompt { font-size: 10px; font-weight: 500; fill: #94A3B8; }
+      .text-cell-hint { font-size: 9px; font-weight: 600; fill: #64748B; font-family: 'Courier New', monospace; }
+      .flow-arrow { fill: #3B82F6; }
+      .caption-text { font-size: 11px; font-weight: 500; fill: #64748B; font-family: 'Courier New', monospace; }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1920" height="1080" fill="#07090E" />
+
+  <!-- CONTINUOUS MASTER BLUEPRINT ENVELOPE (SHARED OUTER BORDER) -->
+  <g transform="translate(30, 24)" id="Master-Blueprint-Frame">
+
+    <!-- Outer Master Frame Box -->
+    <rect width="1860" height="1032" class="bg-blueprint" rx="8" />
+    <rect width="1860" height="1032" class="border-master" rx="8" />
+
+    <!-- 0. MASTER HEADER BAR (Inside Frame) -->
+    <g id="Master-Header-Bar" transform="translate(0, 0)">
+      <rect width="1860" height="50" class="band-header-bg" rx="8" />
+      <line x1="0" y1="50" x2="1860" y2="50" stroke="#3B82F6" stroke-width="2"/>
+      
+      <text x="20" y="32" class="text-title-master">UNIFIED GAME CANVAS</text>
+      <text x="270" y="31" font-size="11" font-weight="700" fill="#3B82F6" font-family="'Courier New', monospace">[FIGURA 11: ARQUITETURA UNIFICADA]</text>
+
+      <g transform="translate(1380, 12)">
+        <rect width="210" height="26" rx="4" fill="#0D111A" stroke="#232D42" stroke-width="1"/>
+        <text x="10" y="17" font-size="11" font-weight="600" fill="#94A3B8">Jogo: <tspan fill="#FFFFFF">Projeto Alpha</tspan></text>
+      </g>
+      <g transform="translate(1605, 12)">
+        <rect width="235" height="26" rx="4" fill="#0D111A" stroke="#232D42" stroke-width="1"/>
+        <text x="10" y="17" font-size="11" font-weight="600" fill="#94A3B8">Autor: <tspan fill="#3B82F6">@domaragao</tspan> | v1.0 Pro</text>
+      </g>
+    </g>
+
+    <!-- 1. TOP ENVELOPE: GAME IMPACT -->
+    <g id="Master-Band-Impact" transform="translate(0, 50)">
+      <!-- Band Title Header -->
+      <rect width="1860" height="36" class="band-header-bg" />
+      <line x1="0" y1="36" x2="1860" y2="36" class="border-grid" />
+      
+      <text x="20" y="23" class="text-band-tag" fill="#818CF8">TOPO • ENVELOPE DE IMPACTO</text>
+      <text x="240" y="24" class="text-band-title">GAME IMPACT</text>
+      <text x="370" y="23" class="text-band-sub">Emotion, Fun, Enjoyment, Learning, Behavioral Changes, Sociability, Metrics</text>
+
+      <!-- 4 Impact Columns (Contiguous Cells) -->
+      <g transform="translate(0, 36)">
+        <!-- Cell 1 -->
+        <g transform="translate(0, 0)">
+          <rect width="465" height="90" fill="#0D111A"/>
+          <line x1="465" y1="0" x2="465" y2="90" class="border-grid"/>
+          <text x="16" y="24" class="text-cell-title">Emotion &amp; Enjoyment</text>
+          <text x="16" y="44" class="text-cell-prompt">• Sensações almejadas: Fun, Joy, Excitement, Empathy</text>
+          <text x="16" y="62" class="text-cell-prompt">• Foco na experiência e humor do jogador</text>
+        </g>
+        <!-- Cell 2 -->
+        <g transform="translate(465, 0)">
+          <rect width="465" height="90" fill="#0D111A"/>
+          <line x1="465" y1="0" x2="465" y2="90" class="border-grid"/>
+          <text x="16" y="24" class="text-cell-title">Learning &amp; Behavior</text>
+          <text x="16" y="44" class="text-cell-prompt">• Habilidades cognitivas, reflexões e novos hábitos</text>
+          <text x="16" y="62" class="text-cell-prompt">• Skills, Habits, Behavioral Changes</text>
+        </g>
+        <!-- Cell 3 -->
+        <g transform="translate(930, 0)">
+          <rect width="465" height="90" fill="#0D111A"/>
+          <line x1="465" y1="0" x2="465" y2="90" class="border-grid"/>
+          <text x="16" y="24" class="text-cell-title">Sociability</text>
+          <text x="16" y="44" class="text-cell-prompt">• Interações comunitárias: Co-op, rivalidades, guilds</text>
+          <text x="16" y="62" class="text-cell-prompt">• Co-op, Social, Guilds, Shared Moments</text>
+        </g>
+        <!-- Cell 4 -->
+        <g transform="translate(1395, 0)">
+          <rect width="465" height="90" fill="#0D111A"/>
+          <text x="16" y="24" class="text-cell-title">Metrics &amp; Retention</text>
+          <text x="16" y="44" class="text-cell-prompt">• Métricas-alvo: DAU/MAU, Retenção D1/D7/D30</text>
+          <text x="16" y="62" class="text-cell-prompt">• Retention, CSAT, Completion Rate</text>
+        </g>
+      </g>
+
+      <!-- Master Dividing Line below Impact -->
+      <line x1="0" y1="126" x2="1860" y2="126" stroke="#3B82F6" stroke-width="2.5"/>
+    </g>
+
+    <!-- 2. CENTRAL NUCLEUS: 6 CONTINUOUS WIREFRAME COLUMNS -->
+    <g id="Master-6-Columns-Matrix" transform="translate(0, 176)">
+      
+      <!-- COLUMN 1: GAME CONCEPT (Width: 310) -->
+      <g id="Col-1-Game-Concept" transform="translate(0, 0)">
+        <rect width="310" height="680" fill="#0D111A"/>
+        <line x1="310" y1="0" x2="310" y2="680" class="border-grid"/>
+        
+        <!-- Header -->
+        <rect width="310" height="38" class="col-header-bg"/>
+        <line x1="0" y1="38" x2="310" y2="38" class="border-grid"/>
+        <text x="12" y="16" class="text-col-step">01. CONCEITO</text>
+        <text x="12" y="30" class="text-col-title">Game Concept</text>
+        <polygon points="306,19 312,19 309,23" class="flow-arrow"/>
+
+        <!-- Cell 1: Name, Title, Version -->
+        <g transform="translate(0, 38)">
+          <rect width="310" height="110" fill="#0D111A"/>
+          <line x1="0" y1="110" x2="310" y2="110" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Name, Title, Version</text>
+          <text x="12" y="44" class="text-cell-prompt">• Título provisório &amp; Codinome</text>
+          <text x="12" y="62" class="text-cell-prompt">• Marco (Alpha, Vertical Slice, MVP)</text>
+        </g>
+
+        <!-- Cell 2: Objective, Intention, Idea -->
+        <g transform="translate(0, 148)">
+          <rect width="310" height="140" fill="#0D111A"/>
+          <line x1="0" y1="140" x2="310" y2="140" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Objective, Intention, Idea</text>
+          <text x="12" y="44" class="text-cell-prompt">• Intenção autoral central</text>
+          <text x="12" y="62" class="text-cell-prompt">• High Concept Pitch (1 frase)</text>
+          <text x="12" y="80" class="text-cell-prompt">• Proposta Única de Valor (USP)</text>
+        </g>
+
+        <!-- Cell 3: Theme, Story, Inspiration -->
+        <g transform="translate(0, 288)">
+          <rect width="310" height="180" fill="#0D111A"/>
+          <line x1="0" y1="180" x2="310" y2="180" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Theme, Story, Inspiration</text>
+          <text x="12" y="44" class="text-cell-prompt">• Universo &amp; Premissa Narrativa</text>
+          <text x="12" y="62" class="text-cell-prompt">• Lore, tom &amp; atmosfera do jogo</text>
+          <text x="12" y="80" class="text-cell-prompt">• Referências culturais e estéticas</text>
+          <text x="12" y="98" class="text-cell-prompt">• Direção de arte e mood</text>
+        </g>
+
+        <!-- Cell 4: Genre, Type -->
+        <g transform="translate(0, 468)">
+          <rect width="310" height="212" fill="#0D111A"/>
+          <text x="12" y="22" class="text-cell-title">Genre, Type</text>
+          <text x="12" y="44" class="text-cell-prompt">• Gênero principal e subgêneros</text>
+          <text x="12" y="62" class="text-cell-prompt">• Ritmo (Turnos vs Tempo Real)</text>
+          <text x="12" y="80" class="text-cell-prompt">• Escala (Casual, Mid-core, Hardcore)</text>
+          <text x="12" y="98" class="text-cell-prompt">• Perspectiva (2D, Isometric, 3D, FPS)</text>
+        </g>
+      </g>
+
+      <!-- COLUMN 2: GAME PLAYER (Width: 310) -->
+      <g id="Col-2-Game-Player" transform="translate(310, 0)">
+        <rect width="310" height="680" fill="#0D111A"/>
+        <line x1="310" y1="0" x2="310" y2="680" class="border-grid"/>
+        
+        <rect width="310" height="38" class="col-header-bg"/>
+        <line x1="0" y1="38" x2="310" y2="38" class="border-grid"/>
+        <text x="12" y="16" class="text-col-step">02. AUDIÊNCIA</text>
+        <text x="12" y="30" class="text-col-title">Game Player</text>
+        <polygon points="306,19 312,19 309,23" class="flow-arrow"/>
+
+        <!-- Age -->
+        <g transform="translate(0, 38)">
+          <rect width="310" height="110" fill="#0D111A"/>
+          <line x1="0" y1="110" x2="310" y2="110" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Age &amp; Demographics</text>
+          <text x="12" y="44" class="text-cell-prompt">• Faixa etária-alvo e classificação</text>
+          <text x="12" y="62" class="text-cell-prompt">• Perfil sócio-cultural do público</text>
+        </g>
+
+        <!-- Type, Segment -->
+        <g transform="translate(0, 148)">
+          <rect width="310" height="140" fill="#0D111A"/>
+          <line x1="0" y1="140" x2="310" y2="140" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Type, Segment</text>
+          <text x="12" y="44" class="text-cell-prompt">• Bartle: Achiever, Explorer, Social, Killer</text>
+          <text x="12" y="62" class="text-cell-prompt">• Proficiência e experiência prévia</text>
+        </g>
+
+        <!-- Number of Players -->
+        <g transform="translate(0, 288)">
+          <rect width="310" height="180" fill="#0D111A"/>
+          <line x1="0" y1="180" x2="310" y2="180" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Number of Players</text>
+          <text x="12" y="44" class="text-cell-prompt">• Single-player / Campanha Solo</text>
+          <text x="12" y="62" class="text-cell-prompt">• Co-op Local / Online</text>
+          <text x="12" y="80" class="text-cell-prompt">• PvP síncrono ou assíncrono</text>
+          <text x="12" y="98" class="text-cell-prompt">• Multiplayer massivo (MMO)</text>
+        </g>
+
+        <!-- Community & Character -->
+        <g transform="translate(0, 468)">
+          <rect width="310" height="212" fill="#0D111A"/>
+          <text x="12" y="22" class="text-cell-title">Community &amp; Character</text>
+          <text x="12" y="44" class="text-cell-prompt">• Persona e apego ao avatar</text>
+          <text x="12" y="62" class="text-cell-prompt">• Grau de customização visual</text>
+          <text x="12" y="80" class="text-cell-prompt">• Guildas, clãs e compartilhamento</text>
+          <text x="12" y="98" class="text-cell-prompt">• Hubs de comunidade (Discord)</text>
+        </g>
+      </g>
+
+      <!-- COLUMN 3: GAME PLAY (CORE FOCUS - Width: 310) -->
+      <g id="Col-3-Game-Play" transform="translate(620, 0)">
+        <rect width="310" height="680" fill="#0D111A"/>
+        <line x1="310" y1="0" x2="310" y2="680" class="border-grid"/>
+        
+        <rect width="310" height="38" class="core-header-bg"/>
+        <line x1="0" y1="38" x2="310" y2="38" stroke="#6366F1" stroke-width="1.5"/>
+        <text x="12" y="16" class="text-col-step" fill="#818CF8">03. CORE LOOP</text>
+        <text x="12" y="30" class="text-col-title" fill="#818CF8">Game Play</text>
+        <polygon points="306,19 312,19 309,23" class="flow-arrow"/>
+
+        <!-- Start, Flow, Win Condition -->
+        <g transform="translate(0, 38)">
+          <rect width="310" height="135" fill="#0D111A"/>
+          <line x1="0" y1="135" x2="310" y2="135" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Start, Flow, Win Condition</text>
+          <text x="12" y="44" class="text-cell-prompt">• Condições de vitória e derrota</text>
+          <text x="12" y="62" class="text-cell-prompt">• Início e ciclo da partida</text>
+          <text x="12" y="80" class="text-cell-prompt">• Intenção contínua de gameplay</text>
+        </g>
+
+        <!-- Rules, Options, Powers -->
+        <g transform="translate(0, 173)">
+          <rect width="310" height="135" fill="#0D111A"/>
+          <line x1="0" y1="135" x2="310" y2="135" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Rules, Options, Powers</text>
+          <text x="12" y="44" class="text-cell-prompt">• Regras invioláveis do sistema</text>
+          <text x="12" y="62" class="text-cell-prompt">• Árvores de habilidades e poderes</text>
+          <text x="12" y="80" class="text-cell-prompt">• Restrições e modificadores</text>
+        </g>
+
+        <!-- Goals, World, Enemies -->
+        <g transform="translate(0, 308)">
+          <rect width="310" height="180" fill="#0D111A"/>
+          <line x1="0" y1="180" x2="310" y2="180" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Goals, World &amp; Enemies</text>
+          <text x="12" y="44" class="text-cell-prompt">• Missões e objetivos principais</text>
+          <text x="12" y="62" class="text-cell-prompt">• Level design e biomas</text>
+          <text x="12" y="80" class="text-cell-prompt">• Inimigos, Bosses e padrões de IA</text>
+          <text x="12" y="98" class="text-cell-prompt">• Recursos e inventário</text>
+        </g>
+
+        <!-- Punishment & Reward -->
+        <g transform="translate(0, 488)">
+          <rect width="310" height="192" fill="#0D111A"/>
+          <text x="12" y="22" class="text-cell-title">Punishment &amp; Reward</text>
+          <text x="12" y="44" class="text-cell-prompt">• Penalidades por falha / Morte</text>
+          <text x="12" y="62" class="text-cell-prompt">• Recompensas (XP, Loot, Upgrades)</text>
+          <text x="12" y="80" class="text-cell-prompt">• Progressão e sensação de maestria</text>
+        </g>
+      </g>
+
+      <!-- COLUMN 4: GAME FLOW (Width: 310) -->
+      <g id="Col-4-Game-Flow" transform="translate(930, 0)">
+        <rect width="310" height="680" fill="#0D111A"/>
+        <line x1="310" y1="0" x2="310" y2="680" class="border-grid"/>
+        
+        <rect width="310" height="38" class="col-header-bg"/>
+        <line x1="0" y1="38" x2="310" y2="38" class="border-grid"/>
+        <text x="12" y="16" class="text-col-step">04. FLUXO</text>
+        <text x="12" y="30" class="text-col-title">Game Flow</text>
+        <polygon points="306,19 312,19 309,23" class="flow-arrow"/>
+
+        <!-- Loops, Turns -->
+        <g transform="translate(0, 38)">
+          <rect width="310" height="135" fill="#0D111A"/>
+          <line x1="0" y1="135" x2="310" y2="135" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Loops, Turns</text>
+          <text x="12" y="44" class="text-cell-prompt">• Micro-loop (segundos)</text>
+          <text x="12" y="62" class="text-cell-prompt">• Meso-loop (sessão de 15-30min)</text>
+          <text x="12" y="80" class="text-cell-prompt">• Macro-loop (progressão global)</text>
+        </g>
+
+        <!-- Time, Randomness, AI -->
+        <g transform="translate(0, 173)">
+          <rect width="310" height="135" fill="#0D111A"/>
+          <line x1="0" y1="135" x2="310" y2="135" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Time, Randomness, AI</text>
+          <text x="12" y="44" class="text-cell-prompt">• Geração procedural e RNG</text>
+          <text x="12" y="62" class="text-cell-prompt">• Curva dinâmica de dificuldade</text>
+          <text x="12" y="80" class="text-cell-prompt">• Comportamento emergente da IA</text>
+        </g>
+
+        <!-- Choices & Uncertainty -->
+        <g transform="translate(0, 308)">
+          <rect width="310" height="180" fill="#0D111A"/>
+          <line x1="0" y1="180" x2="310" y2="180" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Choices &amp; Uncertainty</text>
+          <text x="12" y="44" class="text-cell-prompt">• Dilemas morais e táticos</text>
+          <text x="12" y="62" class="text-cell-prompt">• Risco vs Recompensa</text>
+          <text x="12" y="80" class="text-cell-prompt">• Informação imperfeita e blefe</text>
+          <text x="12" y="98" class="text-cell-prompt">• Estado de Flow ótimo</text>
+        </g>
+
+        <!-- Challenges & Longevity -->
+        <g transform="translate(0, 488)">
+          <rect width="310" height="192" fill="#0D111A"/>
+          <text x="12" y="22" class="text-cell-title">Challenges &amp; Longevity</text>
+          <text x="12" y="44" class="text-cell-prompt">• Desafios cognitivos vs motores</text>
+          <text x="12" y="62" class="text-cell-prompt">• Fator de rejogabilidade (New Game+)</text>
+          <text x="12" y="80" class="text-cell-prompt">• End-game loop e maestria</text>
+        </g>
+      </g>
+
+      <!-- COLUMN 5: GAME CORE (Width: 310) -->
+      <g id="Col-5-Game-Core" transform="translate(1240, 0)">
+        <rect width="310" height="680" fill="#0D111A"/>
+        <line x1="310" y1="0" x2="310" y2="680" class="border-grid"/>
+        
+        <rect width="310" height="38" class="col-header-bg"/>
+        <line x1="0" y1="38" x2="310" y2="38" class="border-grid"/>
+        <text x="12" y="16" class="text-col-step">05. MECÂNICA</text>
+        <text x="12" y="30" class="text-col-title">Game Core</text>
+        <polygon points="306,19 312,19 309,23" class="flow-arrow"/>
+
+        <!-- Actions, Mechanics -->
+        <g transform="translate(0, 38)">
+          <rect width="310" height="190" fill="#0D111A"/>
+          <line x1="0" y1="190" x2="310" y2="190" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Actions, Mechanics</text>
+          <text x="12" y="44" class="text-cell-prompt">• Verbos primários (Pular, Atirar)</text>
+          <text x="12" y="62" class="text-cell-prompt">• Física, colisão e movimentação</text>
+          <text x="12" y="80" class="text-cell-prompt">• Game Feel e sensação de peso</text>
+          <text x="12" y="98" class="text-cell-prompt">• Combos e encadeamentos</text>
+        </g>
+
+        <!-- Effects, Dynamics -->
+        <g transform="translate(0, 228)">
+          <rect width="310" height="190" fill="#0D111A"/>
+          <line x1="0" y1="190" x2="310" y2="190" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Effects, Dynamics</text>
+          <text x="12" y="44" class="text-cell-prompt">• Sinergias emergentes do sistema</text>
+          <text x="12" y="62" class="text-cell-prompt">• Buffs, debuffs e status</text>
+          <text x="12" y="80" class="text-cell-prompt">• Reações elementais em cadeia</text>
+          <text x="12" y="98" class="text-cell-prompt">• Respostas ambientais dinâmicas</text>
+        </g>
+
+        <!-- Elements, Aesthetics -->
+        <g transform="translate(0, 418)">
+          <rect width="310" height="262" fill="#0D111A"/>
+          <text x="12" y="22" class="text-cell-title">Elements, Aesthetics</text>
+          <text x="12" y="44" class="text-cell-prompt">• Identidade visual e paleta</text>
+          <text x="12" y="62" class="text-cell-prompt">• Cutscenes e narrativa ambiental</text>
+          <text x="12" y="80" class="text-cell-prompt">• Trilha sonora e design de áudio</text>
+          <text x="12" y="98" class="text-cell-prompt">• Efeitos de pós-processamento</text>
+        </g>
+      </g>
+
+      <!-- COLUMN 6: GAME INTERACTION (Width: 310) -->
+      <g id="Col-6-Game-Interaction" transform="translate(1550, 0)">
+        <rect width="310" height="680" fill="#0D111A"/>
+        
+        <rect width="310" height="38" class="col-header-bg"/>
+        <line x1="0" y1="38" x2="310" y2="38" class="border-grid"/>
+        <text x="12" y="16" class="text-col-step">06. INTERAÇÃO</text>
+        <text x="12" y="30" class="text-col-title">Game Interaction</text>
+
+        <!-- Platform & Accessibility -->
+        <g transform="translate(0, 38)">
+          <rect width="310" height="135" fill="#0D111A"/>
+          <line x1="0" y1="135" x2="310" y2="135" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Platform &amp; Accessibility</text>
+          <text x="12" y="44" class="text-cell-prompt">• Plataformas (PC, Switch, Mobile)</text>
+          <text x="12" y="62" class="text-cell-prompt">• Engine (Unity, Unreal, Godot)</text>
+          <text x="12" y="80" class="text-cell-prompt">• Recursos de Acessibilidade (A11y)</text>
+        </g>
+
+        <!-- Controls, I/O Devices -->
+        <g transform="translate(0, 173)">
+          <rect width="310" height="135" fill="#0D111A"/>
+          <line x1="0" y1="135" x2="310" y2="135" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">Controls, I/O Devices</text>
+          <text x="12" y="44" class="text-cell-prompt">• Mapeamento e ergonomia de inputs</text>
+          <text x="12" y="62" class="text-cell-prompt">• Gamepad, Teclado/Mouse, Touch</text>
+          <text x="12" y="80" class="text-cell-prompt">• Deadzones e vibração háptica</text>
+        </g>
+
+        <!-- HUD, Menus & Cameras -->
+        <g transform="translate(0, 308)">
+          <rect width="310" height="180" fill="#0D111A"/>
+          <line x1="0" y1="180" x2="310" y2="180" class="border-subtle"/>
+          <text x="12" y="22" class="text-cell-title">HUD, Menus &amp; Cameras</text>
+          <text x="12" y="44" class="text-cell-prompt">• HUD diegético vs UI tradicional</text>
+          <text x="12" y="62" class="text-cell-prompt">• Navegação limpa de menus</text>
+          <text x="12" y="80" class="text-cell-prompt">• Oclusão e controle de câmera</text>
+          <text x="12" y="98" class="text-cell-prompt">• Notificações e indicadores visuais</text>
+        </g>
+
+        <!-- Feedback & Scoring -->
+        <g transform="translate(0, 488)">
+          <rect width="310" height="192" fill="#0D111A"/>
+          <text x="12" y="22" class="text-cell-title">Feedback &amp; Scoring</text>
+          <text x="12" y="44" class="text-cell-prompt">• Juice, screen shake, hit-stop</text>
+          <text x="12" y="62" class="text-cell-prompt">• Leaderboards e telas de score</text>
+          <text x="12" y="80" class="text-cell-prompt">• Configurações de áudio/vídeo</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- 3. BOTTOM ENVELOPE: GAME BUSINESS -->
+    <g id="Master-Band-Business" transform="translate(0, 856)">
+      <!-- Master Dividing Line above Business -->
+      <line x1="0" y1="0" x2="1860" y2="0" stroke="#3B82F6" stroke-width="2.5"/>
+
+      <!-- Header -->
+      <rect width="1860" height="36" class="band-header-bg" />
+      <line x1="0" y1="36" x2="1860" y2="36" class="border-grid" />
+      <text x="20" y="23" class="text-band-tag" fill="#34D399">BASE • ENVELOPE DE NEGÓCIOS</text>
+      <text x="240" y="24" class="text-band-title">GAME BUSINESS</text>
+      <text x="370" y="23" class="text-band-sub">Minimum Viable Prototype, Costs, Revenues, ROI, Channels, Positioning, Bonus Material</text>
+
+      <!-- 5 Business Columns -->
+      <g transform="translate(0, 36)">
+        <g transform="translate(0, 0)">
+          <rect width="372" height="106" fill="#0D111A"/>
+          <line x1="372" y1="0" x2="372" y2="106" class="border-grid"/>
+          <text x="16" y="24" class="text-cell-title">Minimum Viable Prototype</text>
+          <text x="16" y="44" class="text-cell-prompt">• Escopo do Vertical Slice</text>
+          <text x="16" y="62" class="text-cell-prompt">• Teste de Core Loop e milestones</text>
+        </g>
+
+        <g transform="translate(372, 0)">
+          <rect width="372" height="106" fill="#0D111A"/>
+          <line x1="372" y1="0" x2="372" y2="106" class="border-grid"/>
+          <text x="16" y="24" class="text-cell-title">Costs &amp; Budget</text>
+          <text x="16" y="44" class="text-cell-prompt">• Custos de desenvolvimento</text>
+          <text x="16" y="62" class="text-cell-prompt">• Ferramentas, licenças e marketing</text>
+        </g>
+
+        <g transform="translate(744, 0)">
+          <rect width="372" height="106" fill="#0D111A"/>
+          <line x1="372" y1="0" x2="372" y2="106" class="border-grid"/>
+          <text x="16" y="24" class="text-cell-title">Revenues &amp; ROI</text>
+          <text x="16" y="44" class="text-cell-prompt">• Modelo (Premium, F2P, Battle Pass)</text>
+          <text x="16" y="62" class="text-cell-prompt">• Projeção de vendas &amp; Breakeven</text>
+        </g>
+
+        <g transform="translate(1116, 0)">
+          <rect width="372" height="106" fill="#0D111A"/>
+          <line x1="372" y1="0" x2="372" y2="106" class="border-grid"/>
+          <text x="16" y="24" class="text-cell-title">Channels &amp; Positioning</text>
+          <text x="16" y="44" class="text-cell-prompt">• Lojas (Steam, PS, iOS), streamers</text>
+          <text x="16" y="62" class="text-cell-prompt">• Posicionamento de nicho e PR</text>
+        </g>
+
+        <g transform="translate(1488, 0)">
+          <rect width="372" height="106" fill="#0D111A"/>
+          <text x="16" y="24" class="text-cell-title">Bonus Material &amp; Live-Ops</text>
+          <text x="16" y="44" class="text-cell-prompt">• Trilha sonora, Artbook, DLCs</text>
+          <text x="16" y="62" class="text-cell-prompt">• Roadmap e suporte a Mods/Workshop</text>
+        </g>
+      </g>
+
+      <!-- Base Line -->
+      <line x1="0" y1="142" x2="1860" y2="142" class="border-grid"/>
+    </g>
+
+    <!-- 4. CAPTION FOOTER (Inside Master Frame) -->
+    <g transform="translate(0, 998)">
+      <text x="20" y="20" class="caption-text">Figura 11: Unified Game Canvas proposto • Envelope Contínuo de Arquitetura</text>
+      <text x="1410" y="20" class="caption-text">Design System por @Maya (UI/UX) para @domaragao</text>
+    </g>
+
+  </g>
+</svg>
