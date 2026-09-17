@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unified Game Canvas — Game Dev Pro Studio</title>
+  
+  <!-- Typography: Space Grotesk (Gaming Display) + Plus Jakarta Sans (UI) + JetBrains Mono (Dev) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Export engines -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -14,37 +16,42 @@
 
   <style>
     :root {
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       
-      /* GAMING LIGHT BLUEPRINT PALETTE */
-      --bg-page: #F0F4F8;
+      /* GAMING PRO LIGHT PALETTE */
+      --bg-page: #F1F5F9;
       --bg-canvas: #FFFFFF;
       --bg-toolbar: #FFFFFF;
-      --bg-input: #FAFCFE;
+      --bg-input: #FFFFFF;
       --bg-wing: #F8FAFC;
       
       --border-master: #1E293B;
       --border-line: #334155;
       --border-subtle: #E2E8F0;
       --border-input: #CBD5E1;
-      --border-focus: #6366F1;
-      --border-focus-glow: rgba(99, 102, 241, 0.2);
       
-      /* GAMING ACCENT PALETTE */
+      /* THEMATIC ZONE COLORS */
       --accent-impact: #7C3AED;
-      --accent-impact-bg: rgba(124, 58, 237, 0.04);
+      --accent-impact-bg: #FAF5FF;
       --accent-business: #059669;
-      --accent-business-bg: rgba(5, 150, 105, 0.04);
+      --accent-business-bg: #ECFDF5;
       --arrow-color: #312E81;
       
-      /* 6 COLUMNS PIPELINE GRADIENTS / ACCENTS */
-      --col1-accent: #D97706; /* Concept: Amber */
-      --col2-accent: #DB2777; /* Player: Pink/Coral */
-      --col3-accent: #4F46E5; /* Gameplay: Indigo */
-      --col4-accent: #0D9488; /* Flow: Teal */
-      --col5-accent: #DC2626; /* Core: Ruby */
-      --col6-accent: #0284C7; /* Interaction: Cyan */
+      /* 6 PIPELINE COLUMNS THEMATIC COLORS */
+      --c-concept: #D97706;   /* Amber */
+      --c-concept-bg: #FFFBEB;
+      --c-player: #DB2777;    /* Magenta/Coral */
+      --c-player-bg: #FDF2F8;
+      --c-play: #4F46E5;      /* Electric Indigo */
+      --c-play-bg: #EEF2FF;
+      --c-flow: #0D9488;      /* Neon Teal */
+      --c-flow-bg: #F0FDFA;
+      --c-core: #E11D48;      /* Ruby Red */
+      --c-core-bg: #FFF1F2;
+      --c-interact: #0284C7;  /* Cyber Sky */
+      --c-interact-bg: #F0F9FF;
       
       --text-title: #0F172A;
       --text-header: #1E293B;
@@ -52,8 +59,8 @@
       --text-muted: #64748B;
       --text-dim: #94A3B8;
       
-      --shadow-canvas: 0 8px 30px rgba(15, 23, 42, 0.08);
-      --shadow-toolbar: 0 2px 10px rgba(15, 23, 42, 0.04);
+      --shadow-canvas: 0 12px 36px rgba(15, 23, 42, 0.09);
+      --shadow-toolbar: 0 4px 16px rgba(15, 23, 42, 0.05);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,8 +68,9 @@
     body {
       font-family: var(--font-sans);
       background-color: var(--bg-page);
-      background-image: radial-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px);
-      background-size: 24px 24px;
+      background-image: 
+        radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.12) 1px, transparent 0);
+      background-size: 20px 20px;
       color: var(--text-body);
       min-height: 100vh;
       padding: 24px;
@@ -79,11 +87,10 @@
       padding: 12px 20px;
       background: var(--bg-toolbar);
       border: 1.5px solid var(--border-master);
-      border-radius: 6px;
+      border-radius: 12px;
       box-shadow: var(--shadow-toolbar);
       flex-wrap: wrap;
       gap: 12px;
-      position: relative;
     }
 
     .brand-meta-group {
@@ -100,23 +107,24 @@
     }
 
     .brand-icon-box {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
       background: linear-gradient(135deg, #4F46E5, #7C3AED);
       color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
-      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+      font-size: 17px;
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.35);
     }
 
     .brand-title {
-      font-size: 16px;
+      font-family: var(--font-display);
+      font-size: 17px;
       font-weight: 800;
       color: var(--text-title);
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
       text-transform: uppercase;
     }
 
@@ -136,19 +144,21 @@
     }
 
     .meta-field {
-      background: var(--bg-input);
+      background: #F8FAFC;
       border: 1px solid var(--border-input);
-      border-radius: 4px;
+      border-radius: 6px;
       color: var(--text-title);
       font-family: var(--font-sans);
       font-size: 11px;
       font-weight: 600;
-      padding: 4px 8px;
+      padding: 5px 8px;
       outline: none;
-      transition: border-color 0.15s ease;
+      transition: all 0.15s ease;
     }
     .meta-field:focus {
-      border-color: var(--border-focus);
+      background: #FFFFFF;
+      border-color: #4F46E5;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
     }
 
     .btn-actions {
@@ -163,7 +173,7 @@
       font-size: 11.5px;
       font-weight: 700;
       padding: 7px 14px;
-      border-radius: 4px;
+      border-radius: 7px;
       border: 1px solid var(--border-line);
       background: var(--bg-toolbar);
       color: var(--text-header);
@@ -178,23 +188,25 @@
       background: #F8FAFC;
       border-color: var(--text-title);
       color: var(--text-title);
+      transform: translateY(-1px);
     }
 
     .btn-primary {
       background: linear-gradient(135deg, #1E293B, #0F172A);
       color: #FFFFFF;
       border-color: #0F172A;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
     }
     .btn-primary:hover {
       background: linear-gradient(135deg, #334155, #1E293B);
       color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.22);
     }
 
     .btn-group {
       display: inline-flex;
       border: 1px solid var(--border-line);
-      border-radius: 4px;
+      border-radius: 7px;
       overflow: hidden;
     }
     .btn-group .btn {
@@ -209,18 +221,19 @@
     #jsonFileInput { display: none; }
 
     /* =========================================================
-       MASTER CANVAS FRAME (EXACT FAITHFUL BLUEPRINT WIREFRAME)
-       Starts strictly at Game Impact and ends at Game Business
+       MASTER CANVAS FRAME (CURVED BLUEPRINT ENVELOPE)
        ========================================================= */
     .master-canvas-frame {
       max-width: 1920px;
       margin: 0 auto;
       background: var(--bg-canvas);
       border: 2px solid var(--border-master);
+      border-radius: 14px;
       box-shadow: var(--shadow-canvas);
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow: hidden;
     }
 
     /* ---------------------------------------------------------
@@ -233,16 +246,17 @@
       align-items: center;
       text-align: center;
       gap: 4px;
-      background: var(--accent-impact-bg);
+      background: linear-gradient(180deg, var(--accent-impact-bg), #FFFFFF);
       position: relative;
     }
 
     .impact-title {
-      font-size: 18px;
+      font-family: var(--font-display);
+      font-size: 20px;
       font-weight: 800;
       color: var(--accent-impact);
-      letter-spacing: 0.5px;
-      text-transform: capitalize;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -250,8 +264,8 @@
 
     .impact-title::before, .impact-title::after {
       content: "✦";
-      font-size: 11px;
-      opacity: 0.6;
+      font-size: 12px;
+      opacity: 0.7;
     }
 
     .impact-subtitle {
@@ -264,23 +278,24 @@
 
     .resizable-impact-input {
       width: 100%;
-      background: var(--bg-input);
+      background: #FFFFFF;
       border: 1px solid var(--border-input);
-      border-radius: 4px;
+      border-radius: 8px;
       color: var(--text-body);
       font-family: var(--font-sans);
       font-size: 11.5px;
-      line-height: 1.5;
-      padding: 8px 12px;
+      line-height: 1.55;
+      padding: 10px 14px;
       min-height: 75px;
       resize: vertical;
       overflow: auto;
       outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
     }
     .resizable-impact-input:focus {
       border-color: var(--accent-impact);
-      box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
     }
     .resizable-impact-input::placeholder {
       color: var(--text-dim);
@@ -315,13 +330,15 @@
       transform: translateY(-50%);
     }
 
-    /* INNER 6-COLUMN BOX (O RETÂNGULO CENTRAL LIMITADO) */
+    /* INNER 6-COLUMN BOX (O RETÂNGULO CENTRAL COM CANTOS SUAVES) */
     .inner-6col-box {
       border: 2px solid var(--border-line);
+      border-radius: 10px;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       position: relative;
       background: var(--bg-canvas);
+      overflow: hidden;
     }
 
     /* =========================================================
@@ -363,33 +380,35 @@
       border-right: none;
     }
 
-    /* COLUMN HEADER COM GAMING ACCENT BORDER TOP */
+    /* COLUMN HEADER COM TIPOGRAFIA SPACE GROTESK & COR DISTINTIVA */
     .column-header-title {
-      font-size: 13.5px;
+      font-family: var(--font-display);
+      font-size: 14px;
       font-weight: 800;
       color: var(--text-title);
       text-align: center;
-      padding: 12px 6px 10px 6px;
+      padding: 13px 6px 11px 6px;
       border-bottom: 1.5px solid var(--border-line);
-      letter-spacing: 0.2px;
+      letter-spacing: 0.3px;
       background: var(--bg-wing);
+      text-transform: uppercase;
       position: relative;
     }
 
-    .col-concept .column-header-title { border-top: 3px solid var(--col1-accent); }
-    .col-player .column-header-title  { border-top: 3px solid var(--col2-accent); }
-    .col-play .column-header-title    { border-top: 3px solid var(--col3-accent); }
-    .col-flow .column-header-title    { border-top: 3px solid var(--col4-accent); }
-    .col-core .column-header-title    { border-top: 3px solid var(--col5-accent); }
-    .col-interaction .column-header-title { border-top: 3px solid var(--col6-accent); }
+    .col-concept .column-header-title { border-top: 4px solid var(--c-concept); color: var(--c-concept); background: var(--c-concept-bg); }
+    .col-player .column-header-title  { border-top: 4px solid var(--c-player); color: var(--c-player); background: var(--c-player-bg); }
+    .col-play .column-header-title    { border-top: 4px solid var(--c-play); color: var(--c-play); background: var(--c-play-bg); }
+    .col-flow .column-header-title    { border-top: 4px solid var(--c-flow); color: var(--c-flow); background: var(--c-flow-bg); }
+    .col-core .column-header-title    { border-top: 4px solid var(--c-core); color: var(--c-core); background: var(--c-core-bg); }
+    .col-interaction .column-header-title { border-top: 4px solid var(--c-interact); color: var(--c-interact); background: var(--c-interact-bg); }
 
     /* SUB-SECTION WITH RESIZABLE TEXTAREA E PADDING DE RESPIRO */
     .column-topic-block {
       display: flex;
       flex-direction: column;
-      padding: 8px 10px 8px 18px;
+      padding: 9px 10px 9px 18px;
       flex: 1;
-      gap: 4px;
+      gap: 5px;
     }
 
     .topic-label {
@@ -401,30 +420,35 @@
 
     .resizable-field-textarea {
       width: 100%;
-      background: var(--bg-input);
+      background: #FAFCFE;
       border: 1px solid var(--border-input);
-      border-radius: 4px;
+      border-radius: 6px;
       color: var(--text-body);
       font-family: var(--font-sans);
       font-size: 11px;
       line-height: 1.45;
-      padding: 6px 8px;
+      padding: 7px 9px;
       min-height: 60px;
       resize: vertical;
       overflow: auto;
       outline: none;
       flex: 1;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      transition: all 0.15s ease;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
     }
     .resizable-field-textarea:hover {
       background: #FFFFFF;
       border-color: #94A3B8;
     }
-    .resizable-field-textarea:focus {
-      background: #FFFFFF;
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 2px var(--border-focus-glow);
-    }
+
+    /* THEMATIC FOCUS GLOW ACCORDING TO COLUMN */
+    .col-concept .resizable-field-textarea:focus { background: #FFFFFF; border-color: var(--c-concept); box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.18); }
+    .col-player .resizable-field-textarea:focus  { background: #FFFFFF; border-color: var(--c-player); box-shadow: 0 0 0 2px rgba(219, 39, 119, 0.18); }
+    .col-play .resizable-field-textarea:focus    { background: #FFFFFF; border-color: var(--c-play); box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.18); }
+    .col-flow .resizable-field-textarea:focus    { background: #FFFFFF; border-color: var(--c-flow); box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.18); }
+    .col-core .resizable-field-textarea:focus    { background: #FFFFFF; border-color: var(--c-core); box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.18); }
+    .col-interaction .resizable-field-textarea:focus { background: #FFFFFF; border-color: var(--c-interact); box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.18); }
+
     .resizable-field-textarea::placeholder {
       color: var(--text-dim);
       font-size: 10.5px;
@@ -435,22 +459,23 @@
        3. BOTTOM CONTINUOUS AREA: GAME BUSINESS
        --------------------------------------------------------- */
     .section-game-business {
-      padding: 18px 32px 24px 32px;
+      padding: 20px 32px 24px 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       gap: 4px;
-      background: var(--accent-business-bg);
+      background: linear-gradient(180deg, #FFFFFF, var(--accent-business-bg));
       position: relative;
     }
 
     .business-title {
-      font-size: 18px;
+      font-family: var(--font-display);
+      font-size: 20px;
       font-weight: 800;
       color: var(--accent-business);
-      letter-spacing: 0.5px;
-      text-transform: capitalize;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -458,8 +483,8 @@
 
     .business-title::before, .business-title::after {
       content: "✦";
-      font-size: 11px;
-      opacity: 0.6;
+      font-size: 12px;
+      opacity: 0.7;
     }
 
     .business-subtitle {
@@ -472,23 +497,24 @@
 
     .resizable-business-input {
       width: 100%;
-      background: var(--bg-input);
+      background: #FFFFFF;
       border: 1px solid var(--border-input);
-      border-radius: 4px;
+      border-radius: 8px;
       color: var(--text-body);
       font-family: var(--font-sans);
       font-size: 11.5px;
-      line-height: 1.5;
-      padding: 8px 12px;
+      line-height: 1.55;
+      padding: 10px 14px;
       min-height: 75px;
       resize: vertical;
       overflow: auto;
       outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
     }
     .resizable-business-input:focus {
       border-color: var(--accent-business);
-      box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
     }
     .resizable-business-input::placeholder {
       color: var(--text-dim);
@@ -504,7 +530,7 @@
       color: #FFFFFF;
       border: 1px solid #334155;
       padding: 10px 18px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 12px;
       font-weight: 700;
       box-shadow: 0 8px 24px rgba(0,0,0,0.25);
@@ -531,11 +557,13 @@
       }
       .master-canvas-frame {
         border: 2px solid #000 !important;
+        border-radius: 0 !important;
         box-shadow: none !important;
         max-width: 100% !important;
       }
       .inner-6col-box {
         border: 1.5px solid #000 !important;
+        border-radius: 0 !important;
       }
       .canvas-column {
         border-right: 1.5px solid #000 !important;
@@ -543,6 +571,8 @@
       .column-header-title {
         border-bottom: 1.5px solid #000 !important;
         border-top: none !important;
+        background: #FFF !important;
+        color: #000 !important;
       }
       .lateral-connecting-line {
         background: #000 !important;
@@ -552,6 +582,7 @@
       }
       .resizable-field-textarea, .resizable-impact-input, .resizable-business-input {
         border: 1px solid #999 !important;
+        border-radius: 0 !important;
         background: #FFF !important;
         color: #000 !important;
         resize: none !important;
@@ -973,11 +1004,11 @@
         btn_export_png: "🖼️ Exportar PNG",
         btn_export_pdf: "📄 Exportar PDF",
 
-        impact_title: "Impacto do Jogo (Game Impact)",
+        impact_title: "Impacto do Jogo",
         impact_sub: "Emoção, Diversão, Prazer, Aprendizado, Mudanças Comportamentais, Sociabilidade, Métricas",
         ph_impact: "Digite o impacto emocional, propósito, aprendizado, dinamismo social e métricas de sucesso...",
 
-        col1_title: "Conceito (Game Concept)",
+        col1_title: "Conceito",
         col1_row1: "Nome, Título, Versão",
         col1_row2: "Objetivo, Intenção, Ideia",
         col1_row3: "Tema, História, Inspiração",
@@ -987,7 +1018,7 @@
         ph_concept_theme: "Universo, premissa, tom, lore, referências visuais...",
         ph_concept_genre: "Gênero principal, subgêneros híbridos, ritmo, câmera...",
 
-        col2_title: "Jogador (Game Player)",
+        col2_title: "Jogador",
         col2_row1: "Idade / Faixa Etária",
         col2_row2: "Tipo, Segmento",
         col2_row3: "Número de Jogadores",
@@ -999,7 +1030,7 @@
         ph_player_community: "Canais da comunidade, Discord, streaming, clãs...",
         ph_player_character: "Persona do avatar, apego do jogador, customização...",
 
-        col3_title: "Jogabilidade (Game Play)",
+        col3_title: "Gameplay",
         col3_row1: "Início, Fluxo de Intenção, Fim, Condição de Vitória",
         col3_row2: "Regras, Opções, Poderes, Comportamentos",
         col3_row3: "Objetivos, Missões, Desafios, Inimigos & Chefes",
@@ -1017,7 +1048,7 @@
         ph_gameplay_punishment: "Penalidades de morte, perda de recursos...",
         ph_gameplay_reward: "XP, Loot, melhorias, progressão de maestria...",
 
-        col4_title: "Fluxo do Jogo (Game Flow)",
+        col4_title: "Fluxo",
         col4_row1: "Loops, Turnos / Ciclos",
         col4_row2: "Tempo, Aleatoriedade (RNG), IA",
         col4_row3: "Escolhas, Decisões, Incerteza, Antecipação, Experiência",
@@ -1027,7 +1058,7 @@
         ph_flow_choices: "Dilemas táticos/morais, risco vs recompensa, estado de Flow...",
         ph_flow_challenges: "Desafios motores/cognitivos, New Game+, longevidade...",
 
-        col5_title: "Núcleo do Jogo (Game Core)",
+        col5_title: "Núcleo (Core)",
         col5_row1: "Ações, Mecânicas",
         col5_row2: "Efeitos, Dinâmicas",
         col5_row3: "Elementos, Cutscenes, Layout Estético / Arte",
@@ -1035,7 +1066,7 @@
         ph_core_effects: "Sinergias emergentes, buffs/debuffs, reações em cadeia...",
         ph_core_aesthetics: "Estilo visual, narrativa ambiental, trilha sonora/SFX...",
 
-        col6_title: "Interação & Interface (Game Interaction)",
+        col6_title: "Interação & UI",
         col6_row1: "Plataforma, Acessibilidade, Sistemas Operacionais, Tecnologia, Frameworks",
         col6_row2: "Controles, Dispositivos de E/S (Inputs)",
         col6_row3: "Configurações, Single ou Multiplayer",
@@ -1047,7 +1078,7 @@
         ph_interaction_hud: "HUD diegético/padrão, menus, oclusão de câmera...",
         ph_interaction_feedback: "Juice, screen shake, hit-stop, leaderboards, placar...",
 
-        business_title: "Negócios do Jogo (Game Business)",
+        business_title: "Negócios do Jogo",
         business_sub: "Protótipo Mínimo Viável, Custos, Receitas, ROI, Canais, Posicionamento, Material Bônus",
         ph_business: "Escopo do Vertical Slice/MVP, estrutura de custos, modelo de monetização, preço, canais de distribuição e Live-Ops..."
       }
@@ -1128,14 +1159,14 @@
 
     function autoSave() {
       const data = gatherCanvasData();
-      localStorage.setItem('ugc_faithful_data_v2', JSON.stringify(data));
+      localStorage.setItem('ugc_faithful_data_v3', JSON.stringify(data));
     }
 
     function loadSavedState() {
       const savedLang = localStorage.getItem('ugc_lang_pref') || 'en';
       setLanguage(savedLang);
 
-      const raw = localStorage.getItem('ugc_faithful_data_v2');
+      const raw = localStorage.getItem('ugc_faithful_data_v3');
       if (raw) {
         try {
           populateCanvasData(JSON.parse(raw));
@@ -1146,7 +1177,7 @@
     function clearFields() {
       if (confirm('Deseja limpar todos os dados do canvas?')) {
         document.querySelectorAll('[data-key]').forEach(el => el.value = '');
-        localStorage.removeItem('ugc_faithful_data_v2');
+        localStorage.removeItem('ugc_faithful_data_v3');
         showToast('🗑️ Dados limpos.');
       }
     }
