@@ -333,7 +333,7 @@
       transform: translateY(-50%);
     }
 
-    /* INNER 6-COLUMN BOX (O RETÂNGULO CENTRAL COM CANTOS SUAVES) */
+    /* INNER 6-COLUMN BOX (O RETÂNGULO CENTRAL COM OVERFLOW VISIBLE PARA OS CHEVRONS) */
     .inner-6col-box {
       border: 2px solid var(--border-line);
       border-radius: 10px;
@@ -341,7 +341,7 @@
       grid-template-columns: repeat(6, 1fr);
       position: relative;
       background: var(--bg-canvas);
-      overflow: hidden;
+      overflow: visible; /* Garante que os chevrons da borda direita e esquerda fiquem 100% visíveis */
     }
 
     /* =========================================================
@@ -351,7 +351,7 @@
       position: absolute;
       width: 10px;
       height: 36px;
-      z-index: 10;
+      z-index: 20;
       pointer-events: none;
       transform: translateY(-50%);
       filter: drop-shadow(1px 0 2px rgba(0, 0, 0, 0.15));
@@ -399,12 +399,22 @@
       position: relative;
     }
 
-    .col-concept .column-header-title { border-top: 4px solid var(--c-concept); color: var(--c-concept); background: var(--c-concept-bg); }
+    .col-concept .column-header-title { 
+      border-top: 4px solid var(--c-concept); 
+      color: var(--c-concept); 
+      background: var(--c-concept-bg); 
+      border-top-left-radius: 8px;
+    }
     .col-player .column-header-title  { border-top: 4px solid var(--c-player); color: var(--c-player); background: var(--c-player-bg); }
     .col-play .column-header-title    { border-top: 4px solid var(--c-play); color: var(--c-play); background: var(--c-play-bg); }
     .col-flow .column-header-title    { border-top: 4px solid var(--c-flow); color: var(--c-flow); background: var(--c-flow-bg); }
     .col-core .column-header-title    { border-top: 4px solid var(--c-core); color: var(--c-core); background: var(--c-core-bg); }
-    .col-interaction .column-header-title { border-top: 4px solid var(--c-interact); color: var(--c-interact); background: var(--c-interact-bg); }
+    .col-interaction .column-header-title { 
+      border-top: 4px solid var(--c-interact); 
+      color: var(--c-interact); 
+      background: var(--c-interact-bg); 
+      border-top-right-radius: 8px;
+    }
 
     /* SUB-SECTION CONTAINER (ALLOWS RESIZING WITHOUT FLEX CRUSH) */
     .column-topic-block {
@@ -727,9 +737,9 @@
             <textarea class="resizable-field-textarea" data-key="concept_theme" data-i18n-ph="ph_concept_theme" placeholder="Universo, premissa, tom, lore, referências..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label" data-i18n="col1_row4">Genre, Type</span>
-            <textarea class="resizable-field-textarea" data-key="concept_genre" placeholder="Gênero, subgêneros, ritmo, escala, câmera..."></textarea>
+            <textarea class="resizable-field-textarea" data-key="concept_genre" data-i18n-ph="ph_concept_genre" placeholder="Gênero, subgêneros, ritmo, escala, câmera..."></textarea>
           </div>
         </article>
 
@@ -759,7 +769,7 @@
             <textarea class="resizable-field-textarea" data-key="player_community" data-i18n-ph="ph_player_community" placeholder="Canais comunitários, guilds, hubs..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label" data-i18n="col2_row5">Character</span>
             <textarea class="resizable-field-textarea" data-key="player_character" data-i18n-ph="ph_player_character" placeholder="Persona do avatar, customização, conexão..."></textarea>
           </div>
@@ -806,7 +816,7 @@
             <textarea class="resizable-field-textarea" data-key="gameplay_punishment" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_punishment" placeholder="Penalidades por falha, perda de recursos..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label" data-i18n="col3_row8">Reward, Improvement</span>
             <textarea class="resizable-field-textarea" data-key="gameplay_reward" style="min-height:50px; height:52px;" data-i18n-ph="ph_gameplay_reward" placeholder="Recompensas (XP, Loot), progressão, maestria..."></textarea>
           </div>
@@ -833,7 +843,7 @@
             <textarea class="resizable-field-textarea" data-key="flow_choices" data-i18n-ph="ph_flow_choices" placeholder="Dilemas morais/táticos, tensão, antecipação, estado de Flow..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label" data-i18n="col4_row4">Skill Challenges, Incentive, Longevity</span>
             <textarea class="resizable-field-textarea" data-key="flow_challenges" data-i18n-ph="ph_flow_challenges" placeholder="Desafios cognitivos/motores, New Game+, replayability..."></textarea>
           </div>
@@ -855,7 +865,7 @@
             <textarea class="resizable-field-textarea" data-key="core_effects" style="min-height:75px; height:80px;" data-i18n-ph="ph_core_effects" placeholder="Sinergias emergentes, buffs/debuffs, reações..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label" data-i18n="col5_row3">Elements, Cut Scenes, Aesthetic Layout</span>
             <textarea class="resizable-field-textarea" data-key="core_aesthetics" style="min-height:75px; height:80px;" data-i18n-ph="ph_core_aesthetics" placeholder="Identidade visual, cutscenes, narrativa ambiental, trilha..."></textarea>
           </div>
@@ -887,7 +897,7 @@
             <textarea class="resizable-field-textarea" data-key="interaction_hud" data-i18n-ph="ph_interaction_hud" placeholder="HUD diegético/tradicional, menus, oclusão de câmera..."></textarea>
           </div>
 
-          <div class="column-topic-block">
+          <div class="column-topic-block" style="flex:1;">
             <span class="topic-label" data-i18n="col6_row5">Feedback, Scoring</span>
             <textarea class="resizable-field-textarea" data-key="interaction_feedback" data-i18n-ph="ph_interaction_feedback" placeholder="Juice, screen shake, hit-stop, leaderboards, placar..."></textarea>
           </div>
