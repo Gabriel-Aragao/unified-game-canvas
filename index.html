@@ -1255,7 +1255,7 @@
       event.target.value = '';
     }
 
-    /* RENDER ENGINE FOR PNG & PDF EXPORT WITH FULL MULTI-LINE TEXTAREA PRESERVATION */
+    /* RENDER ENGINE FOR PNG & PDF EXPORT WITH FULL MULTI-LINE TEXTAREA & ACCURATE CHEVRON PRESERVATION */
     async function captureBlueprint() {
       // First ensure all live textareas are sized properly
       autoResizeAll();
@@ -1267,14 +1267,13 @@
         logging: false,
         backgroundColor: '#FFFFFF',
         onclone: (clonedDoc) => {
-          // Replace textareas with structured pre-wrap divs to prevent html2canvas clipping
+          // 1. Replace textareas with structured pre-wrap divs to prevent html2canvas clipping
           const textareas = clonedDoc.querySelectorAll('textarea');
           textareas.forEach(tx => {
             const div = clonedDoc.createElement('div');
             div.className = tx.className;
             div.style.cssText = window.getComputedStyle(tx).cssText;
             
-            // Critical overrides for print/export perfection
             div.style.whiteSpace = 'pre-wrap';
             div.style.wordBreak = 'break-word';
             div.style.overflow = 'visible';
@@ -1294,54 +1293,55 @@
 
             tx.parentNode.replaceChild(div, tx);
           });
+
+          // 2. Explicitly recalculate and freeze exact pixel coordinates for all 9 chevrons after textarea expansion
+          const innerBox = clonedDoc.querySelector('.inner-6col-box');
+          const cols = clonedDoc.querySelectorAll('.canvas-column');
+          if (innerBox && cols.length >= 6) {
+            const boxH = innerBox.offsetHeight;
+            const boxW = innerBox.offsetWidth;
+            const chevronH = 36;
+            const chevronW = 10;
+
+            const positionChevron = (selector, topPx, leftPx) => {
+              const el = clonedDoc.querySelector(selector);
+              if (el) {
+                el.style.transform = 'none';
+                el.style.webkitTransform = 'none';
+                el.style.filter = 'none';
+                el.style.webkitFilter = 'none';
+                el.style.position = 'absolute';
+                el.style.top = Math.round(topPx) + 'px';
+                el.style.left = Math.round(leftPx) + 'px';
+                el.style.width = chevronW + 'px';
+                el.style.height = chevronH + 'px';
+                el.style.display = 'block';
+                el.style.visibility = 'visible';
+                const poly = el.querySelector('polygon');
+                if (poly) {
+                  poly.setAttribute('fill', '#312E81');
+                  poly.style.fill = '#312E81';
+                }
+              }
+            };
+
+            // Entrance chevrons on Col 1 left wall (38% and 62%)
+            positionChevron('.chevron-left-top', boxH * 0.38 - chevronH / 2, -chevronW / 2);
+            positionChevron('.chevron-left-bot', boxH * 0.62 - chevronH / 2, -chevronW / 2);
+
+            // 5 Intermediate divider chevrons at midline (50%)
+            for (let i = 1; i <= 5; i++) {
+              if (cols[i]) {
+                positionChevron('.chevron-div-' + i, boxH * 0.50 - chevronH / 2, cols[i].offsetLeft - chevronW / 2);
+              }
+            }
+
+            // Exit chevrons on Col 6 right wall (38% and 62%)
+            positionChevron('.chevron-right-top', boxH * 0.38 - chevronH / 2, boxW - chevronW / 2);
+            positionChevron('.chevron-right-bot', boxH * 0.62 - chevronH / 2, boxW - chevronW / 2);
+          }
         }
       });
-
-      // DIRECT 2D CANVAS DRAWING OF CHEVRONS:
-      // Guarantees 100% vector-sharp visibility on exported PNG and PDF without relying on SVG DOM rasterization
-      try {
-        const ctx = canvas.getContext('2d');
-        const scale = 2;
-        const rootRect = root.getBoundingClientRect();
-        const innerBox = document.querySelector('.inner-6col-box');
-        
-        if (innerBox && ctx) {
-          const boxRect = innerBox.getBoundingClientRect();
-          const offsetX = (boxRect.left - rootRect.left) * scale;
-          const offsetY = (boxRect.top - rootRect.top) * scale;
-          const boxW = boxRect.width * scale;
-          const boxH = boxRect.height * scale;
-          const colW = boxW / 6;
-
-          const chevronW = 10 * scale;
-          const chevronH = 36 * scale;
-          ctx.fillStyle = '#312E81';
-
-          function paintChevron(cx, cy) {
-            ctx.beginPath();
-            ctx.moveTo(cx - chevronW / 2, cy - chevronH / 2);
-            ctx.lineTo(cx + chevronW / 2, cy);
-            ctx.lineTo(cx - chevronW / 2, cy + chevronH / 2);
-            ctx.closePath();
-            ctx.fill();
-          }
-
-          // 1. Entrance chevrons on Col 1 left border (at 38% and 62%)
-          paintChevron(offsetX, offsetY + boxH * 0.38);
-          paintChevron(offsetX, offsetY + boxH * 0.62);
-
-          // 2. 5 Internal divider chevrons (at 50% midline)
-          for (let i = 1; i <= 5; i++) {
-            paintChevron(offsetX + colW * i, offsetY + boxH * 0.50);
-          }
-
-          // 3. Exit chevrons on Col 6 right border (at 38% and 62%)
-          paintChevron(offsetX + boxW, offsetY + boxH * 0.38);
-          paintChevron(offsetX + boxW, offsetY + boxH * 0.62);
-        }
-      } catch (err) {
-        console.error('Error drawing chevrons on export canvas:', err);
-      }
 
       return canvas;
     }
