@@ -1255,16 +1255,46 @@
       event.target.value = '';
     }
 
-    /* ========================================================
-       RENDER ENGINE FOR PNG & PDF EXPORT
-       ======================================================== */
+    /* RENDER ENGINE FOR PNG & PDF EXPORT WITH FULL MULTI-LINE TEXTAREA PRESERVATION */
     async function captureBlueprint() {
+      // First ensure all live textareas are sized properly
+      autoResizeAll();
+
       const root = document.getElementById('blueprintCaptureRoot');
       const canvas = await html2canvas(root, {
         scale: 2,
         useCORS: true,
         logging: false,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
+        onclone: (clonedDoc) => {
+          // Replace textareas with structured pre-wrap divs to prevent html2canvas clipping
+          const textareas = clonedDoc.querySelectorAll('textarea');
+          textareas.forEach(tx => {
+            const div = clonedDoc.createElement('div');
+            div.className = tx.className;
+            div.style.cssText = window.getComputedStyle(tx).cssText;
+            
+            // Critical overrides for print/export perfection
+            div.style.whiteSpace = 'pre-wrap';
+            div.style.wordBreak = 'break-word';
+            div.style.overflow = 'visible';
+            div.style.height = 'auto';
+            div.style.minHeight = (tx.scrollHeight || 24) + 'px';
+            div.style.resize = 'none';
+            div.style.boxSizing = 'border-box';
+            div.style.display = 'block';
+
+            if (tx.value && tx.value.trim().length > 0) {
+              div.textContent = tx.value;
+            } else {
+              div.textContent = tx.getAttribute('placeholder') || '';
+              div.style.color = '#94A3B8';
+              div.style.fontStyle = 'italic';
+            }
+
+            tx.parentNode.replaceChild(div, tx);
+          });
+        }
       });
       return canvas;
     }
