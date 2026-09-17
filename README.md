@@ -36,8 +36,6 @@ O **Unified Game Canvas** é uma ferramenta de design de jogos de prancheta cont
 - 💾 **Persistência & Portabilidade:**
   - **Exportar/Importar JSON:** Salve e compartilhe arquivos `.json` com todos os 33 campos preenchidos.
   - **Autosave Local:** Salvamento contínuo em tempo real no `localStorage` do navegador.
-- 🎨 **Compatibilidade com Figma:**
-  - Acompanha arquivo vetorial otimizado (`unified_game_canvas.svg`) que pode ser arrastado diretamente para o Figma, convertendo-se em frames e caixas de texto 100% editáveis.
 
 ---
 
@@ -71,7 +69,6 @@ Garante a sustentabilidade comercial e produtiva do projeto:
 
 ## 🛠️ Como Utilizar
 
-### Execução Local
 Basta abrir o arquivo `index.html` em qualquer navegador moderno:
 ```bash
 # Clone o repositório
@@ -86,16 +83,8 @@ start index.html # Windows
 
 ---
 
-## 📄 Arquivos do Repositório
-
-- `index.html` — Aplicação web interativa com renderizador de blueprint, suporte a temas e motores de exportação PNG/PDF/JSON.
-- `unified_game_canvas.svg` — Vetor estruturado em camadas e agrupamentos limpos para uso direto no Figma.
-- `FIGMA_SPEC.md` — Especificações técnicas de Auto-Layout, Tokens de Design (Light/Dark) e tipografia para Figma.
-
----
-
 ## 👩‍💻 Autoria & Créditos
 
-- **Design de Interface & Sistema de Tokens:** @Maya (UI/UX Designer)
+- **Design de Interface & Engenharia Web:** @Maya (UI/UX Designer)
 - **Metodologia Original:** Baseado no framework *Unified Game Canvas*
 - **Projeto:** @domaragao / Gabriel Aragão
