@@ -358,19 +358,19 @@
     }
 
     /* 2 CHEVRONS NA ENTRADA (COL 1) - APROXIMADOS (38% E 62%) */
-    .chevron-left-top { left: -2px; top: 38%; }
-    .chevron-left-bot { left: -2px; top: 62%; }
+    .chevron-left-top { left: 1px; top: 38%; }
+    .chevron-left-bot { left: 1px; top: 62%; }
 
     /* 5 CHEVRONS NAS DIVISÓRIAS INTERNAS NA LINHA MÉDIA (50%) */
-    .chevron-div-1 { left: calc(16.666% - 2px); top: 50%; }
-    .chevron-div-2 { left: calc(33.333% - 2px); top: 50%; }
-    .chevron-div-3 { left: calc(50.000% - 2px); top: 50%; }
-    .chevron-div-4 { left: calc(66.666% - 2px); top: 50%; }
-    .chevron-div-5 { left: calc(83.333% - 2px); top: 50%; }
+    .chevron-div-1 { left: calc(16.666% + 1px); top: 50%; }
+    .chevron-div-2 { left: calc(33.333% + 1px); top: 50%; }
+    .chevron-div-3 { left: calc(50.000% + 1px); top: 50%; }
+    .chevron-div-4 { left: calc(66.666% + 1px); top: 50%; }
+    .chevron-div-5 { left: calc(83.333% + 1px); top: 50%; }
 
     /* 2 CHEVRONS NA SAÍDA (COL 6) - APROXIMADOS (38% E 62%) */
-    .chevron-right-top { left: calc(100% - 3px); top: 38%; }
-    .chevron-right-bot { left: calc(100% - 3px); top: 62%; }
+    .chevron-right-top { left: calc(100% + 1px); top: 38%; }
+    .chevron-right-bot { left: calc(100% + 1px); top: 62%; }
 
     /* INDIVIDUAL COLUMN (ÁREA VERTICAL CONTÍNUA) */
     .canvas-column {
@@ -1305,20 +1305,20 @@
               }
             };
 
-            // Entrance chevrons on Col 1 left wall (38% and 62%)
-            positionChevron('.chevron-left-top', boxH * 0.38 - chevronH / 2, -2);
-            positionChevron('.chevron-left-bot', boxH * 0.62 - chevronH / 2, -2);
+            // Entrance chevrons on Col 1 left wall (38% and 62%) - starts right at line
+            positionChevron('.chevron-left-top', boxH * 0.38 - chevronH / 2, 1);
+            positionChevron('.chevron-left-bot', boxH * 0.62 - chevronH / 2, 1);
 
-            // 5 Intermediate divider chevrons at midline (50%)
+            // 5 Intermediate divider chevrons at midline (50%) - starts right after divider
             for (let i = 1; i <= 5; i++) {
               if (cols[i]) {
-                positionChevron('.chevron-div-' + i, boxH * 0.50 - chevronH / 2, cols[i].offsetLeft - 2);
+                positionChevron('.chevron-div-' + i, boxH * 0.50 - chevronH / 2, cols[i].offsetLeft + 1);
               }
             }
 
-            // Exit chevrons on Col 6 right wall (38% and 62%)
-            positionChevron('.chevron-right-top', boxH * 0.38 - chevronH / 2, boxW - 3);
-            positionChevron('.chevron-right-bot', boxH * 0.62 - chevronH / 2, boxW - 3);
+            // Exit chevrons on Col 6 right wall (38% and 62%) - starts right after right wall
+            positionChevron('.chevron-right-top', boxH * 0.38 - chevronH / 2, boxW + 1);
+            positionChevron('.chevron-right-bot', boxH * 0.62 - chevronH / 2, boxW + 1);
           }
         }
       });
