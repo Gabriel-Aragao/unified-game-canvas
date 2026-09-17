@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unified Game Canvas — Blueprint Master Studio</title>
+  <title>Unified Game Canvas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
   <!-- Export engines -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -17,57 +17,51 @@
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       
-      /* THEME: BLUEPRINT DARK (DEFAULT) */
-      --bg-body: #07090E;
-      --bg-blueprint: #0D111A;
-      --bg-cell: #111622;
-      --bg-cell-hover: #161D2D;
+      /* THEME: MINIMAL DARK (CLEAN) */
+      --bg-body: #090B10;
+      --bg-canvas: #0F131C;
+      --bg-cell: #131824;
+      --bg-cell-hover: #181F2E;
       --bg-input: transparent;
       
-      --border-master: #3B82F6;
-      --border-master-glow: rgba(59, 130, 246, 0.25);
-      --border-grid: #232D42;
-      --border-grid-subtle: #1C2436;
-      --border-accent: #6366F1;
+      --border-master: #2D3748;
+      --border-grid: #1F2737;
+      --border-grid-subtle: #18202F;
+      --border-focus: #4F46E5;
       
-      --accent-impact: #818CF8;
-      --accent-business: #34D399;
-      --accent-arrow: #3B82F6;
+      --accent-flow: #6366F1;
       
-      --text-title: #FFFFFF;
+      --text-title: #F8FAFC;
       --text-header: #E2E8F0;
       --text-body: #CBD5E1;
       --text-muted: #94A3B8;
       --text-dim: #64748B;
       
-      --shadow-master: 0 0 0 1px var(--border-master), 0 12px 40px rgba(0, 0, 0, 0.6);
+      --shadow-master: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
     [data-theme="light"] {
-      /* THEME: BLUEPRINT LIGHT / STUDIO */
-      --bg-body: #F1F5F9;
-      --bg-blueprint: #FFFFFF;
-      --bg-cell: #FAFCFF;
+      /* THEME: MINIMAL LIGHT (CLEAN) */
+      --bg-body: #F8FAFC;
+      --bg-canvas: #FFFFFF;
+      --bg-cell: #FAFCFE;
       --bg-cell-hover: #F1F5F9;
       --bg-input: transparent;
       
-      --border-master: #1E293B;
-      --border-master-glow: rgba(0, 0, 0, 0.05);
-      --border-grid: #CBD5E1;
-      --border-grid-subtle: #E2E8F0;
-      --border-accent: #4F46E5;
+      --border-master: #CBD5E1;
+      --border-grid: #E2E8F0;
+      --border-grid-subtle: #F1F5F9;
+      --border-focus: #4F46E5;
       
-      --accent-impact: #4338CA;
-      --accent-business: #047857;
-      --accent-arrow: #2563EB;
+      --accent-flow: #4F46E5;
       
       --text-title: #0F172A;
       --text-header: #1E293B;
       --text-body: #334155;
-      --text-muted: #475569;
+      --text-muted: #64748B;
       --text-dim: #94A3B8;
       
-      --shadow-master: 0 0 0 1px var(--border-master), 0 8px 30px rgba(0, 0, 0, 0.08);
+      --shadow-master: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -89,9 +83,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 12px 20px;
-      background: var(--bg-blueprint);
+      background: var(--bg-canvas);
       border: 1px solid var(--border-grid);
-      border-radius: 10px;
+      border-radius: 8px;
       flex-wrap: wrap;
       gap: 12px;
     }
@@ -103,19 +97,14 @@
     }
 
     .brand-icon {
-      font-size: 20px;
+      font-size: 18px;
     }
 
     .brand-title {
-      font-size: 17px;
-      font-weight: 800;
+      font-size: 16px;
+      font-weight: 700;
       color: var(--text-title);
-      letter-spacing: -0.3px;
-    }
-
-    .brand-sub {
-      font-size: 11.5px;
-      color: var(--text-muted);
+      letter-spacing: -0.2px;
     }
 
     .btn-actions {
@@ -147,13 +136,12 @@
     }
 
     .btn-primary {
-      background: #2563EB;
+      background: var(--border-focus);
       color: #FFFFFF;
-      border-color: #2563EB;
+      border-color: var(--border-focus);
     }
     .btn-primary:hover {
-      background: #1D4ED8;
-      border-color: #1D4ED8;
+      opacity: 0.9;
     }
 
     .btn-group {
@@ -174,14 +162,14 @@
     #jsonFileInput { display: none; }
 
     /* =========================================================
-       CONTINUOUS BLUEPRINT MASTER ENVELOPE (SHARED OUTER BORDER)
+       CLEAN CONTINUOUS BLUEPRINT (SHARED MASTER BORDER)
        ========================================================= */
     .blueprint-outer-wrapper {
       max-width: 1920px;
       margin: 0 auto;
-      background: var(--bg-blueprint);
-      border: 2.5px solid var(--border-master);
-      border-radius: 8px;
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-master);
+      border-radius: 6px;
       box-shadow: var(--shadow-master);
       display: flex;
       flex-direction: column;
@@ -189,37 +177,24 @@
       position: relative;
     }
 
-    /* BLUEPRINT HEADER INFO BAR (INSIDE MASTER FRAME) */
+    /* BLUEPRINT HEADER INFO BAR */
     .blueprint-header-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 18px;
+      padding: 12px 18px;
       background: var(--bg-cell);
-      border-bottom: 2px solid var(--border-master);
+      border-bottom: 1.5px solid var(--border-master);
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
 
-    .blueprint-title-tag {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-    }
-
-    .blueprint-title-tag h2 {
-      font-size: 18px;
+    .blueprint-header-bar h2 {
+      font-size: 17px;
       font-weight: 800;
       letter-spacing: 0.5px;
       color: var(--text-title);
       text-transform: uppercase;
-    }
-
-    .blueprint-title-tag span {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--accent-arrow);
     }
 
     .blueprint-meta-row {
@@ -249,56 +224,30 @@
       outline: none;
     }
     .meta-input-field:focus {
-      border-color: var(--border-master);
+      border-color: var(--border-focus);
     }
 
     /* ---------------------------------------------------------
-       1. TOP ENVELOPE: GAME IMPACT (CONTIGUOUS MASTER TOP ROW)
+       1. TOP ENVELOPE: GAME IMPACT
        --------------------------------------------------------- */
     .master-band-impact {
-      border-bottom: 2.5px solid var(--border-master);
+      border-bottom: 1.5px solid var(--border-master);
       display: flex;
       flex-direction: column;
-      background: var(--bg-blueprint);
+      background: var(--bg-canvas);
     }
 
     .band-title-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 16px;
+      padding: 9px 16px;
       background: var(--bg-cell);
-      border-bottom: 1.5px solid var(--border-grid);
-    }
-
-    .band-title-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .band-tag {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 2px 6px;
-      border-radius: 3px;
-    }
-    .tag-impact {
-      background: rgba(129, 140, 248, 0.15);
-      color: var(--accent-impact);
-      border: 1px solid rgba(129, 140, 248, 0.4);
-    }
-    .tag-business {
-      background: rgba(52, 211, 153, 0.15);
-      color: var(--accent-business);
-      border: 1px solid rgba(52, 211, 153, 0.4);
+      border-bottom: 1px solid var(--border-grid);
     }
 
     .band-name {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--text-title);
       letter-spacing: 0.5px;
@@ -322,13 +271,13 @@
     .master-band-columns {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      background: var(--bg-blueprint);
+      background: var(--bg-canvas);
     }
 
     .flow-column-envelope {
       display: flex;
       flex-direction: column;
-      border-right: 1.5px solid var(--border-grid);
+      border-right: 1px solid var(--border-grid);
       position: relative;
     }
     .flow-column-envelope:last-child {
@@ -338,53 +287,36 @@
     /* COLUMN HEADER */
     .column-banner {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 8px 12px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
       background: var(--bg-cell);
-      border-bottom: 1.5px solid var(--border-grid);
+      border-bottom: 1px solid var(--border-grid);
       position: relative;
     }
 
-    .col-step-tag {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 800;
-      color: var(--accent-arrow);
-      letter-spacing: 0.5px;
-    }
-
     .col-title-text {
-      font-size: 13px;
-      font-weight: 800;
+      font-size: 12.5px;
+      font-weight: 700;
       color: var(--text-title);
-      text-transform: uppercase;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.1px;
     }
 
-    /* FLOW CHEVRON ON BORDER */
-    .column-banner::after {
-      content: "▶";
-      position: absolute;
-      right: -6px;
-      top: 50%;
-      transform: translateY(-50%);
+    /* Subtle chevron between columns */
+    .col-arrow {
       font-size: 9px;
-      color: var(--accent-arrow);
-      z-index: 5;
-    }
-    .flow-column-envelope:last-child .column-banner::after {
-      display: none;
+      color: var(--text-dim);
+      margin-right: -4px;
     }
 
     /* ---------------------------------------------------------
-       3. BOTTOM ENVELOPE: GAME BUSINESS (CONTIGUOUS MASTER BASE)
+       3. BOTTOM ENVELOPE: GAME BUSINESS
        --------------------------------------------------------- */
     .master-band-business {
-      border-top: 2.5px solid var(--border-master);
+      border-top: 1.5px solid var(--border-master);
       display: flex;
       flex-direction: column;
-      background: var(--bg-blueprint);
+      background: var(--bg-canvas);
     }
 
     .business-cells-grid {
@@ -393,7 +325,7 @@
     }
 
     /* =========================================================
-       SEAMLESS GRID CELLS & DIRECT BLUEPRINT INPUT FIELDS
+       SEAMLESS GRID CELLS & MINIMAL INPUT FIELDS
        ========================================================= */
     .grid-cell {
       display: flex;
@@ -401,7 +333,7 @@
       border-bottom: 1px solid var(--border-grid-subtle);
       border-right: 1px solid var(--border-grid-subtle);
       padding: 8px 10px;
-      background: var(--bg-blueprint);
+      background: var(--bg-canvas);
       transition: background 0.15s ease;
       min-height: 80px;
     }
@@ -420,14 +352,13 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .cell-title {
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 10.5px;
+      font-weight: 600;
       color: var(--text-header);
-      text-transform: capitalize;
     }
 
     .cell-textarea {
@@ -450,9 +381,9 @@
     }
 
     .cell-footer-hint {
-      font-size: 9.5px;
+      font-size: 9px;
       color: var(--text-dim);
-      margin-top: 4px;
+      margin-top: 3px;
       line-height: 1.25;
       font-family: var(--font-mono);
     }
@@ -464,10 +395,9 @@
       align-items: center;
       padding: 8px 16px;
       background: var(--bg-cell);
-      border-top: 1.5px solid var(--border-grid);
+      border-top: 1px solid var(--border-grid);
       font-size: 10px;
       color: var(--text-dim);
-      font-family: var(--font-mono);
     }
 
     /* TOAST */
@@ -494,7 +424,7 @@
       transform: translateY(0);
     }
 
-    /* PRINT RULES */
+    /* PRINT */
     @media print {
       body {
         padding: 0;
@@ -505,12 +435,12 @@
         display: none !important;
       }
       .blueprint-outer-wrapper {
-        border: 2px solid #000 !important;
+        border: 1.5px solid #000 !important;
         box-shadow: none !important;
         max-width: 100% !important;
       }
       .grid-cell {
-        border-color: #999 !important;
+        border-color: #CCC !important;
       }
     }
   </style>
@@ -520,16 +450,13 @@
   <!-- CONTROL TOOLBAR -->
   <header class="app-toolbar">
     <div class="brand-group">
-      <div class="brand-icon">📐</div>
-      <div>
-        <h1 class="brand-title">Unified Game Canvas — Blueprint Master</h1>
-        <p class="brand-sub">Envelope Contínuo de Arquitetura de Jogos • @Maya (UI/UX)</p>
-      </div>
+      <div class="brand-icon">🎮</div>
+      <h1 class="brand-title">Unified Game Canvas</h1>
     </div>
 
     <div class="btn-actions">
       <!-- Theme & Reset -->
-      <button class="btn" onclick="toggleTheme()">🌓 Alternar Tema (<span id="themeName">Dark</span>)</button>
+      <button class="btn" onclick="toggleTheme()">🌓 Tema: <span id="themeName">Dark</span></button>
       <button class="btn" onclick="clearFields()">🗑️ Limpar</button>
       <button class="btn" onclick="saveDraft()">💾 Salvar</button>
 
@@ -542,28 +469,25 @@
 
       <!-- High-Res Exports (PNG & PDF) -->
       <div class="btn-group">
-        <button class="btn btn-primary" onclick="exportPNG('dark')">🖼️ PNG Dark</button>
-        <button class="btn btn-primary" onclick="exportPNG('light')">🖼️ PNG Light</button>
+        <button class="btn btn-primary" onclick="exportPNG('dark')">PNG Dark</button>
+        <button class="btn btn-primary" onclick="exportPNG('light')">PNG Light</button>
       </div>
 
       <div class="btn-group">
-        <button class="btn btn-primary" onclick="exportPDF('dark')">📄 PDF Dark</button>
-        <button class="btn btn-primary" onclick="exportPDF('light')">📄 PDF Light</button>
+        <button class="btn btn-primary" onclick="exportPDF('dark')">PDF Dark</button>
+        <button class="btn btn-primary" onclick="exportPDF('light')">PDF Light</button>
       </div>
     </div>
   </header>
 
   <!-- ========================================================
-       MASTER BLUEPRINT CONTINUOUS ENVELOPE (SHARED OUTER BORDER)
+       MASTER CLEAN CONTINUOUS ENVELOPE
        ======================================================== -->
   <main class="blueprint-outer-wrapper" id="blueprintCaptureRoot">
 
-    <!-- MASTER HEADER INFO BAR -->
+    <!-- MASTER HEADER BAR -->
     <div class="blueprint-header-bar">
-      <div class="blueprint-title-tag">
-        <h2>UNIFIED GAME CANVAS</h2>
-        <span>[FIGURA 11: ARQUITETURA UNIFICADA]</span>
-      </div>
+      <h2>Unified Game Canvas</h2>
 
       <div class="blueprint-meta-row">
         <div class="meta-item">
@@ -572,7 +496,7 @@
         </div>
         <div class="meta-item">
           <span>Versão:</span>
-          <input type="text" id="metaVersion" class="meta-input-field" value="v1.0 Pro" placeholder="v1.0" style="width: 70px;">
+          <input type="text" id="metaVersion" class="meta-input-field" value="v1.0" placeholder="v1.0" style="width: 70px;">
         </div>
         <div class="meta-item">
           <span>Designer:</span>
@@ -584,10 +508,7 @@
     <!-- 1. TOP ENVELOPE: GAME IMPACT -->
     <section class="master-band-impact">
       <div class="band-title-bar">
-        <div class="band-title-group">
-          <span class="band-tag tag-impact">TOPO • ENVELOPE DE IMPACTO</span>
-          <h3 class="band-name">GAME IMPACT</h3>
-        </div>
+        <h3 class="band-name">Game Impact</h3>
         <div class="band-prompt-text">
           Emotion, Fun, Enjoyment, Learning, Behavioral Changes, Sociability, Metrics
         </div>
@@ -598,8 +519,8 @@
           <div class="cell-header-row">
             <span class="cell-title">Emotion &amp; Enjoyment</span>
           </div>
-          <textarea class="cell-textarea" data-key="impact_emotion" placeholder="Sensações almejadas: Fun, Joy, Excitement, Empathy, Mood..."></textarea>
-          <div class="cell-footer-hint">Keywords: Fun, Joy, Excitement, Empathy</div>
+          <textarea class="cell-textarea" data-key="impact_emotion" placeholder="Sensações almejadas: Fun, Joy, Excitement, Empathy..."></textarea>
+          <div class="cell-footer-hint">Fun, Joy, Excitement, Empathy</div>
         </div>
 
         <div class="grid-cell">
@@ -607,23 +528,23 @@
             <span class="cell-title">Learning &amp; Behavior</span>
           </div>
           <textarea class="cell-textarea" data-key="impact_learning" placeholder="Aprendizados, transformação de hábitos e reflexões cognitivas..."></textarea>
-          <div class="cell-footer-hint">Keywords: Skills, Habits, Behavioral Changes</div>
+          <div class="cell-footer-hint">Skills, Habits, Behavioral Changes</div>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row">
             <span class="cell-title">Sociability</span>
           </div>
-          <textarea class="cell-textarea" data-key="impact_sociability" placeholder="Interação comunitária: Co-op, rivalidades, guilds, streaming..."></textarea>
-          <div class="cell-footer-hint">Keywords: Co-op, Social, Guilds, Shared Moments</div>
+          <textarea class="cell-textarea" data-key="impact_sociability" placeholder="Interação comunitária: Co-op, rivalidades, guilds..."></textarea>
+          <div class="cell-footer-hint">Co-op, Social, Guilds, Shared Moments</div>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row">
             <span class="cell-title">Metrics &amp; Retention</span>
           </div>
-          <textarea class="cell-textarea" data-key="impact_metrics" placeholder="Métricas de sucesso: DAU/MAU, Retenção D1/D7/D30, tempo médio..."></textarea>
-          <div class="cell-footer-hint">Keywords: Retention, CSAT, Completion Rate</div>
+          <textarea class="cell-textarea" data-key="impact_metrics" placeholder="Métricas de sucesso: DAU/MAU, Retenção D1/D7/D30..."></textarea>
+          <div class="cell-footer-hint">Retention, CSAT, Completion Rate</div>
         </div>
       </div>
     </section>
@@ -634,36 +555,36 @@
       <!-- COLUNA 1: GAME CONCEPT -->
       <article class="flow-column-envelope">
         <div class="column-banner">
-          <span class="col-step-tag">01. CONCEITO</span>
           <h4 class="col-title-text">Game Concept</h4>
+          <span class="col-arrow">▶</span>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Name, Title, Version</span></div>
-          <textarea class="cell-textarea" data-key="concept_name" placeholder="Título, codinome e marco (Alpha/MVP)..."></textarea>
+          <textarea class="cell-textarea" data-key="concept_name" placeholder="Título, codinome e marco..."></textarea>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Objective, Intention, Idea</span></div>
-          <textarea class="cell-textarea" data-key="concept_objective" placeholder="Intenção central, High Concept Pitch (1 frase), USP..."></textarea>
+          <textarea class="cell-textarea" data-key="concept_objective" placeholder="Intenção central, High Concept Pitch, USP..."></textarea>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Theme, Story, Inspiration</span></div>
-          <textarea class="cell-textarea" data-key="concept_theme" placeholder="Universo, premissa narrativa, tom, lore e referências..."></textarea>
+          <textarea class="cell-textarea" data-key="concept_theme" placeholder="Universo, narrativa, tom, lore e referências..."></textarea>
         </div>
 
         <div class="grid-cell" style="flex:1;">
           <div class="cell-header-row"><span class="cell-title">Genre, Type</span></div>
-          <textarea class="cell-textarea" data-key="concept_genre" placeholder="Gênero, subgêneros, ritmo, escala e perspectiva 2D/3D..."></textarea>
+          <textarea class="cell-textarea" data-key="concept_genre" placeholder="Gênero, subgêneros, ritmo, escala e câmera..."></textarea>
         </div>
       </article>
 
       <!-- COLUNA 2: GAME PLAYER -->
       <article class="flow-column-envelope">
         <div class="column-banner">
-          <span class="col-step-tag">02. AUDIÊNCIA</span>
           <h4 class="col-title-text">Game Player</h4>
+          <span class="col-arrow">▶</span>
         </div>
 
         <div class="grid-cell">
@@ -683,15 +604,15 @@
 
         <div class="grid-cell" style="flex:1;">
           <div class="cell-header-row"><span class="cell-title">Community &amp; Character</span></div>
-          <textarea class="cell-textarea" data-key="player_community" placeholder="Persona do avatar, apego, customização, Discord..."></textarea>
+          <textarea class="cell-textarea" data-key="player_community" placeholder="Persona do avatar, apego, customização..."></textarea>
         </div>
       </article>
 
-      <!-- COLUNA 3: GAME PLAY (CORE) -->
-      <article class="flow-column-envelope" style="background: rgba(99, 102, 241, 0.02);">
-        <div class="column-banner" style="background: rgba(99, 102, 241, 0.08);">
-          <span class="col-step-tag" style="color:var(--accent-impact);">03. CORE LOOP</span>
-          <h4 class="col-title-text" style="color:var(--accent-impact);">Game Play</h4>
+      <!-- COLUNA 3: GAME PLAY -->
+      <article class="flow-column-envelope">
+        <div class="column-banner">
+          <h4 class="col-title-text">Game Play</h4>
+          <span class="col-arrow">▶</span>
         </div>
 
         <div class="grid-cell">
@@ -701,63 +622,63 @@
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Rules, Options, Powers</span></div>
-          <textarea class="cell-textarea" data-key="gameplay_rules" placeholder="Regras invioláveis, restrições, árvores de poder..."></textarea>
+          <textarea class="cell-textarea" data-key="gameplay_rules" placeholder="Regras invioláveis, restrições, poderes..."></textarea>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Goals, World &amp; Enemies</span></div>
-          <textarea class="cell-textarea" data-key="gameplay_world" placeholder="Missões, level design, biomas, bosses e inventário..."></textarea>
+          <textarea class="cell-textarea" data-key="gameplay_world" placeholder="Missões, level design, biomas, bosses..."></textarea>
         </div>
 
         <div class="grid-cell" style="flex:1;">
           <div class="cell-header-row"><span class="cell-title">Punishment &amp; Reward</span></div>
-          <textarea class="cell-textarea" data-key="gameplay_reward" placeholder="Penalidades por falha vs Recompensas (Loot, XP, progresso)..."></textarea>
+          <textarea class="cell-textarea" data-key="gameplay_reward" placeholder="Penalidades por falha vs Recompensas (Loot, XP)..."></textarea>
         </div>
       </article>
 
       <!-- COLUNA 4: GAME FLOW -->
       <article class="flow-column-envelope">
         <div class="column-banner">
-          <span class="col-step-tag">04. FLUXO</span>
           <h4 class="col-title-text">Game Flow</h4>
+          <span class="col-arrow">▶</span>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Loops, Turns</span></div>
-          <textarea class="cell-textarea" data-key="flow_loops" placeholder="Micro-loop (segundos), Meso (sessão), Macro (campanha)..."></textarea>
+          <textarea class="cell-textarea" data-key="flow_loops" placeholder="Micro-loop (segundos), Meso (sessão), Macro..."></textarea>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Time, Randomness, AI</span></div>
-          <textarea class="cell-textarea" data-key="flow_randomness" placeholder="Geração procedural, RNG balanceado, adaptação de IA..."></textarea>
+          <textarea class="cell-textarea" data-key="flow_randomness" placeholder="Geração procedural, RNG balanceado, IA..."></textarea>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Choices &amp; Uncertainty</span></div>
-          <textarea class="cell-textarea" data-key="flow_choices" placeholder="Dilemas táticos, risco vs recompensa, estado de Flow..."></textarea>
+          <textarea class="cell-textarea" data-key="flow_choices" placeholder="Dilemas táticos, risco vs recompensa, Flow..."></textarea>
         </div>
 
         <div class="grid-cell" style="flex:1;">
           <div class="cell-header-row"><span class="cell-title">Challenges &amp; Longevity</span></div>
-          <textarea class="cell-textarea" data-key="flow_challenges" placeholder="Desafios cognitivos, New Game+, end-game e replay..."></textarea>
+          <textarea class="cell-textarea" data-key="flow_challenges" placeholder="Desafios cognitivos, New Game+, replay..."></textarea>
         </div>
       </article>
 
       <!-- COLUNA 5: GAME CORE -->
       <article class="flow-column-envelope">
         <div class="column-banner">
-          <span class="col-step-tag">05. MECÂNICA</span>
           <h4 class="col-title-text">Game Core</h4>
+          <span class="col-arrow">▶</span>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Actions, Mechanics</span></div>
-          <textarea class="cell-textarea" data-key="core_actions" placeholder="Verbos de ação (Pular, Atirar, Construir), Game Feel..."></textarea>
+          <textarea class="cell-textarea" data-key="core_actions" placeholder="Verbos de ação (Pular, Atirar), Game Feel..."></textarea>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Effects, Dynamics</span></div>
-          <textarea class="cell-textarea" data-key="core_effects" placeholder="Sinergias emergentes, status (buffs/debuffs), reações..."></textarea>
+          <textarea class="cell-textarea" data-key="core_effects" placeholder="Sinergias emergentes, buffs/debuffs, reações..."></textarea>
         </div>
 
         <div class="grid-cell" style="flex:1;">
@@ -769,28 +690,27 @@
       <!-- COLUNA 6: GAME INTERACTION -->
       <article class="flow-column-envelope">
         <div class="column-banner">
-          <span class="col-step-tag">06. INTERACTION</span>
           <h4 class="col-title-text">Game Interaction</h4>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Platform &amp; Accessibility</span></div>
-          <textarea class="cell-textarea" data-key="interaction_platform" placeholder="Plataformas (PC, Console, Mobile), Engine, WCAG/A11y..."></textarea>
+          <textarea class="cell-textarea" data-key="interaction_platform" placeholder="Plataformas (PC, Console, Mobile), Engine, A11y..."></textarea>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Controls, I/O Devices</span></div>
-          <textarea class="cell-textarea" data-key="interaction_controls" placeholder="Gamepad, Teclado/Mouse, Touch, deadzones, háptica..."></textarea>
+          <textarea class="cell-textarea" data-key="interaction_controls" placeholder="Gamepad, Teclado/Mouse, Touch, háptica..."></textarea>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">HUD, Menus &amp; Cameras</span></div>
-          <textarea class="cell-textarea" data-key="interaction_hud" placeholder="HUD diegético/tradicional, menus, controle de câmera..."></textarea>
+          <textarea class="cell-textarea" data-key="interaction_hud" placeholder="HUD diegético/tradicional, menus, câmera..."></textarea>
         </div>
 
         <div class="grid-cell" style="flex:1;">
           <div class="cell-header-row"><span class="cell-title">Feedback &amp; Scoring</span></div>
-          <textarea class="cell-textarea" data-key="interaction_feedback" placeholder="Juice, screen shake, hit-stop, leaderboards e score..."></textarea>
+          <textarea class="cell-textarea" data-key="interaction_feedback" placeholder="Juice, screen shake, hit-stop, leaderboards..."></textarea>
         </div>
       </article>
 
@@ -799,10 +719,7 @@
     <!-- 3. BOTTOM ENVELOPE: GAME BUSINESS -->
     <section class="master-band-business">
       <div class="band-title-bar">
-        <div class="band-title-group">
-          <span class="band-tag tag-business">BASE • ENVELOPE DE NEGÓCIOS</span>
-          <h3 class="band-name">GAME BUSINESS</h3>
-        </div>
+        <h3 class="band-name">Game Business</h3>
         <div class="band-prompt-text">
           Minimum Viable Prototype, Costs, Revenues, ROI, Channels, Positioning, Bonus Material
         </div>
@@ -812,39 +729,39 @@
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Minimum Viable Prototype</span></div>
           <textarea class="cell-textarea" data-key="biz_mvp" placeholder="Escopo do Vertical Slice, teste de Core Loop e milestones..."></textarea>
-          <div class="cell-footer-hint">• Vertical Slice, MVP, Milestones</div>
+          <div class="cell-footer-hint">Vertical Slice, MVP, Milestones</div>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Costs &amp; Budget</span></div>
-          <textarea class="cell-textarea" data-key="biz_costs" placeholder="Custo de equipe, licenças de software, budget de marketing..."></textarea>
-          <div class="cell-footer-hint">• Team, Engines, Marketing, Outsourcing</div>
+          <textarea class="cell-textarea" data-key="biz_costs" placeholder="Custo de equipe, licenças de software, marketing..."></textarea>
+          <div class="cell-footer-hint">Team, Engines, Marketing</div>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Revenues &amp; ROI</span></div>
-          <textarea class="cell-textarea" data-key="biz_revenues" placeholder="Modelo (Premium, F2P, Battle Pass), projeção de vendas..."></textarea>
-          <div class="cell-footer-hint">• Pricing, IAP, Subscriptions, Breakeven</div>
+          <textarea class="cell-textarea" data-key="biz_revenues" placeholder="Modelo (Premium, F2P), projeção de vendas..."></textarea>
+          <div class="cell-footer-hint">Pricing, IAP, Subscriptions</div>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Channels &amp; Positioning</span></div>
-          <textarea class="cell-textarea" data-key="biz_channels" placeholder="Lojas (Steam, PlayStation, iOS), assessoria, streamers..."></textarea>
-          <div class="cell-footer-hint">• Stores, PR, Streamers, Niche Position</div>
+          <textarea class="cell-textarea" data-key="biz_channels" placeholder="Lojas (Steam, PS, iOS), assessoria, streamers..."></textarea>
+          <div class="cell-footer-hint">Stores, PR, Streamers</div>
         </div>
 
         <div class="grid-cell">
           <div class="cell-header-row"><span class="cell-title">Bonus Material &amp; Live-Ops</span></div>
-          <textarea class="cell-textarea" data-key="biz_bonus" placeholder="Trilha sonora, Artbook, DLCs, passes e suporte a Mods..."></textarea>
-          <div class="cell-footer-hint">• OST, Artbook, Seasonal Updates, Workshop</div>
+          <textarea class="cell-textarea" data-key="biz_bonus" placeholder="Trilha sonora, Artbook, DLCs, passes e Mods..."></textarea>
+          <div class="cell-footer-hint">OST, Artbook, Updates, Workshop</div>
         </div>
       </div>
     </section>
 
     <!-- CAPTION FOOTER -->
     <div class="blueprint-caption">
-      <span>Figura 11: Unified Game Canvas proposto • Envelope Contínuo de Arquitetura</span>
-      <span>Design System por @Maya (UI/UX Designer) para @domaragao</span>
+      <span>Unified Game Canvas</span>
+      <span>Design System por @Maya (UI/UX) para @domaragao</span>
     </div>
 
   </main>
@@ -872,7 +789,7 @@
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       document.getElementById('themeName').innerText = theme === 'dark' ? 'Dark' : 'Light';
-      localStorage.setItem('ugc_theme_pref_blueprint', theme);
+      localStorage.setItem('ugc_theme_pref_clean', theme);
     }
 
     /* ========================================================
@@ -913,15 +830,15 @@
 
     function saveDraft() {
       const data = gatherCanvasData();
-      localStorage.setItem('ugc_blueprint_saved', JSON.stringify(data));
-      showToast('💾 Blueprint salvo com sucesso!');
+      localStorage.setItem('ugc_clean_saved', JSON.stringify(data));
+      showToast('💾 Dados salvos com sucesso!');
     }
 
     function loadDraft() {
-      const theme = localStorage.getItem('ugc_theme_pref_blueprint');
+      const theme = localStorage.getItem('ugc_theme_pref_clean');
       if (theme) setTheme(theme);
 
-      const raw = localStorage.getItem('ugc_blueprint_saved');
+      const raw = localStorage.getItem('ugc_clean_saved');
       if (raw) {
         try {
           populateCanvasData(JSON.parse(raw));
@@ -930,24 +847,24 @@
     }
 
     function clearFields() {
-      if (confirm('Deseja limpar todos os dados do blueprint?')) {
+      if (confirm('Deseja limpar todos os dados do canvas?')) {
         document.querySelectorAll('.cell-textarea').forEach(tx => tx.value = '');
-        localStorage.removeItem('ugc_blueprint_saved');
+        localStorage.removeItem('ugc_clean_saved');
         showToast('🗑️ Dados limpos.');
       }
     }
 
     function exportJSON() {
       const data = gatherCanvasData();
-      const slug = (data.meta.gameTitle || 'game-blueprint').toLowerCase().replace(/[^a-z0-9]/g, '-');
+      const slug = (data.meta.gameTitle || 'game-canvas').toLowerCase().replace(/[^a-z0-9]/g, '-');
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `${slug}-blueprint.json`;
+      a.download = `${slug}-canvas.json`;
       a.click();
       URL.revokeObjectURL(url);
-      showToast('📥 JSON exportado!');
+      showToast('📥 JSON exportado com sucesso!');
     }
 
     function triggerImport() {
@@ -985,7 +902,7 @@
         scale: 2,
         useCORS: true,
         logging: false,
-        backgroundColor: themeMode === 'dark' ? '#07090E' : '#FFFFFF'
+        backgroundColor: themeMode === 'dark' ? '#090B10' : '#F8FAFC'
       });
 
       document.documentElement.setAttribute('data-theme', initialTheme);
@@ -997,12 +914,12 @@
       try {
         const canvas = await captureBlueprint(themeMode);
         const dataUrl = canvas.toDataURL('image/png');
-        const title = document.getElementById('metaGameTitle').value || 'Game-Blueprint';
+        const title = document.getElementById('metaGameTitle').value || 'Game-Canvas';
         const slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
 
         const a = document.createElement('a');
         a.href = dataUrl;
-        a.download = `${slug}-unified-canvas-${themeMode}.png`;
+        a.download = `${slug}-${themeMode}.png`;
         a.click();
         showToast(`✅ PNG (${themeMode.toUpperCase()}) pronto!`);
       } catch(e) {
@@ -1024,9 +941,9 @@
         });
 
         pdf.addImage(imgData, 'JPEG', 0, 0, canvas.width / 2, canvas.height / 2);
-        const title = document.getElementById('metaGameTitle').value || 'Game-Blueprint';
+        const title = document.getElementById('metaGameTitle').value || 'Game-Canvas';
         const slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-        pdf.save(`${slug}-unified-canvas-${themeMode}.pdf`);
+        pdf.save(`${slug}-${themeMode}.pdf`);
         showToast(`✅ PDF (${themeMode.toUpperCase()}) pronto!`);
       } catch(e) {
         alert('Erro ao gerar PDF: ' + e.message);
@@ -1035,7 +952,7 @@
 
     document.addEventListener('input', () => {
       const data = gatherCanvasData();
-      localStorage.setItem('ugc_blueprint_saved', JSON.stringify(data));
+      localStorage.setItem('ugc_clean_saved', JSON.stringify(data));
     });
 
     window.addEventListener('DOMContentLoaded', loadDraft);
